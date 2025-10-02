@@ -1,0 +1,1453 @@
+Story: Delivery Restaurant Example
+
+Imagine you opened a big restaurant that delivers food to customers.
+
+Part 1: Docker – Packing the Food
+
+In your kitchen, you prepare different food items – biryani, curry, chapati.
+But before delivery, you need to pack them properly in containers so they don’t mix, spoil, or leak.
+
+That’s exactly what Docker does in software:
+
+It packages an application with all its dependencies into one box called a container.
+
+No matter where you run it (Windows, Linux, Cloud), the application works the same.
+
+Example: You put your Node.js app inside a Docker container and send it anywhere.
+
+
+So Docker = Packing and shipping box for applications.
+
+
+---
+
+Part 2: Kubernetes – Managing All Deliveries
+
+Now imagine your restaurant grows big.
+You have 100 delivery boys carrying 1,000 food boxes daily.
+How do you manage them?
+
+Who delivers where?
+
+What if one delivery boy’s bike breaks down?
+
+How do you make sure food reaches on time?
+
+
+This is where you need a manager.
+That manager is Kubernetes.
+
+Kubernetes makes sure:
+
+Containers (food boxes) are running properly.
+
+If one container fails, another is started automatically.
+
+If demand increases (like festival day), more containers are created.
+
+It distributes load so no single server is overloaded.
+
+
+So Kubernetes = The manager who controls, monitors, and scales all deliveries (containers).
+
+
+---
+
+Simple Line Difference
+
+Docker helps you create and run containers.
+
+Kubernetes helps you manage thousands of containers in production.
+
+
+KK Funda Message
+
+“Docker is like the box that makes sure your app is safe and portable.
+Kubernetes is like the manager that makes sure all boxes reach the right place at the right time.”
+
+
+Docker Production Issue: Container Crashes Because of Missing Environment Variable
+
+Background
+A payment service runs in a Docker container. It needs an environment variable called PAYMENT_API_KEY to connect to a third-party payment gateway.
+
+Issue
+After a new deployment, the container kept crashing again and again. In Kubernetes, pods were going into CrashLoopBackOff state. The application logs showed:
+
+Error: PAYMENT_API_KEY not found
+
+Because of this, the payment service was completely down — customers were not able to make transactions.
+
+
+Troubleshooting
+
+1. Checked the running container environment variables using:
+
+docker inspect <container-id>
+
+Found that PAYMENT_API_KEY was missing.
+
+
+2. Looked at the Docker run command in Jenkins pipeline. The -e PAYMENT_API_KEY=xxx part was not included.
+
+
+3. Verified the Kubernetes deployment YAML — the secret was not mounted properly.
+
+
+
+
+Root Cause
+
+During deployment, the environment variable was not passed into the container.
+
+Without this key, the app failed to start and crashed repeatedly.
+
+
+Fix Applied
+
+1. Added the missing variable in Kubernetes secret:
+
+kubectl create secret generic payment-secret --from-literal=PAYMENT_API_KEY=abc123 -n production
+
+
+2. Updated deployment YAML to load the secret:
+
+envFrom:
+  - secretRef:
+      name: payment-secret
+
+
+3. Re-deployed the service. Container started successfully and app came back online.
+
+
+Learning for Upcoming DevOps Engineers
+
+Always double-check environment variables before deployment.
+
+A single missing value can crash the whole application.
+
+Best practice: manage secrets with Kubernetes Secrets or Vault, never hardcode in Dockerfile.
+
+Add monitoring for pod restarts and failed health checks, so you catch the issue quickly.
+
+
+KK FUNDA DEVOPS 
+PRASANTH REDDY 
+9676831734
+
+Real-Time DevOps Issue: Deployment Failure in Production due to Misconfigured Environment Variables
+
+Background
+
+Our team was deploying a new version of a Node.js microservice into production using a CI/CD pipeline with Jenkins, Docker, and Kubernetes. This service connects to a MongoDB database and is a key component of our high-traffic eCommerce application.
+
+Issue
+
+Within two minutes after deployment, users began reporting issues. Product details were not loading, cart and checkout flows were breaking, and 500 errors were appearing on the UI. Monitoring dashboards such as Grafana showed a spike in error rates and latency.
+
+Immediate Actions
+
+1. Alert was received via Prometheus integrated with Slack.
+
+
+2. DevOps team checked the pod logs using the command:
+kubectl logs -f <pod-name> -n production
+
+The logs clearly showed the error:
+MongoDB URI not defined
+
+
+3. Immediate rollback was initiated using the command:
+kubectl rollout undo deployment/<deployment-name> -n production
+
+This brought the previous stable version back and stopped user impact.
+
+
+
+Root Cause (RCA)
+
+In the Jenkins pipeline, the updated version required a new environment variable called MONGO_URI.
+While the ConfigMap was updated during deployment, the corresponding Secret was missing.
+As a result, the application could not establish a database connection, leading to API failures and service downtime for 4 to 5 minutes.
+
+Fix Applied
+
+1. Created the missing Secret using the command:
+kubectl create secret generic mongo-secret --from-literal=MONGO_URI=... -n production
+
+
+2. Updated the deployment YAML file to correctly reference the Secret.
+
+
+3. Validated the fix thoroughly in the staging environment.
+
+
+4. Performed a controlled re-deployment to production after testing.
+
+
+
+What We Learned
+
+Never deploy directly to production without first validating in a staging environment.
+Always double-check that required Secrets and ConfigMaps are properly configured.
+Add a Jenkins pre-deployment validation step to check for all required environment variables.
+Ensure monitoring alerts are in place for pod failures, DB connection errors, and crash loops.
+
+KK FUNDA Message
+
+DevOps is not just about automation.
+It’s about identifying alerts, analyzing logs, finding root causes, and applying fixes calmly and effectively.
+Issues will happen, but your thinking, tool knowledge, and problem-solving approach define your growth as a real DevOps engineer
+
+DevOps Engineer – Git Daily, Weekly, Monthly Tasks & Responsibilities
+
+Daily Responsibilities
+
+1. Code Commit Monitoring
+
+Teams lo evaru e branches lo commit chestunnaru choodali
+
+Wrong branch ki accidental push avvakunda early identify cheyyali
+
+
+
+2. Pull Request (PR) Reviews
+
+Pending PRs review cheyyadam
+
+Proper commit messages, clean diff, and formatting verify cheyyadam
+
+
+
+3. Merge Conflict Resolution
+
+Developers ki merge conflicts vachina support ivvadam
+
+Rebase, cherry-pick, reset commands usage explain cheyyadam
+
+
+
+4. Branch Cleanups
+
+Old branches identify cheyyadam
+
+Local and remote lo cleanup suggest cheyyadam
+
+
+
+5. Build Trigger Verification
+
+Code push tarvata build pipelines auto-trigger avuthunnaya choodali
+
+If Jenkins or GitHub Actions integrate chesunte status check cheyyadam
+
+
+
+
+
+---
+
+Weekly Responsibilities
+
+1. Branch Protection Review
+
+Main/master branches ki protection rules apply vunnaya
+
+Direct push block chesaraa, PR approval rules vunnaya
+
+
+
+2. Tagging Verification
+
+Release ki version-based tags create chesaraa
+
+Consistent tagging standard follow avtunnaya
+
+
+
+3. Git Hooks Review
+
+Pre-commit hooks or lint checks work avtunnaya choodali
+
+Team developers follow avtunnara verify cheyyadam
+
+
+
+4. User Access Review
+
+GitHub/GitLab lo user permissions review cheyyadam
+
+Unused or expired users access revoke cheyyadam
+
+
+
+5. Branching Strategy Validation
+
+Develop → Feature → Release → Master flow follow avtundaa?
+
+Hotfix branches naming consistent vundaa check cheyyadam
+
+
+
+6. Forks and Clones Monitoring
+
+Unauthorized forks identify cheyyadam (especially public repos)
+
+Private repos cloning restrict cheyyadam
+
+
+
+
+
+---
+
+Monthly Responsibilities
+
+1. Repository Cleanup
+
+Old or unused repos identify cheyyadam
+
+Confirmation tarvata archive cheyyadam
+
+
+
+2. Commit History Audit
+
+Junk commits or messy history undo chesaraa?
+
+Squash merge and meaningful commit messages promote cheyyadam
+
+
+
+3. Code Ownership Assignment
+
+Each module or folder ki responsible developer assign cheyyadam
+
+CODEOWNERS file update cheyyadam
+
+
+
+4. Repo Size Check
+
+Binary files accidentally push chesaraa?
+
+Git LFS (Large File Storage) implementation chudali
+
+
+
+5. Security Scan of Repos
+
+Gitleaks or GitGuardian tools use chesi token/password leaks identify cheyyadam
+
+Sensitive info accidentally commit ayyindaa check cheyyadam
+
+
+
+6. Git Training Sessions
+
+New hires or juniors ki Git commands, workflows, best practices explain cheyyadam
+
+Reset, revert, branching, conflict resolution topics cover cheyyadam..
+
+
+
+KK Funda Message
+
+Git lo code commit cheyyatam kaadu main task…
+Proper branching, versioning, permissions, history maintenance valla
+team efficiency, security, and release quality improve avtundi.
+Git ni just VCS ani choopinchakandi –
+It’s the foundation for DevOps collaboration.
+
+Miku ee informative anipiste , please like and share it to your friends
+
+
+
+DevOps Engineer – Jenkins Daily, Weekly, Monthly Tasks & Responsibilities
+
+Daily Tasks (Everyday Responsibilities)
+
+1. Build Jobs Status Check
+Morning login ayyaka Jenkins dashboard open chesi:
+
+
+
+Last 24 hours lo yemi builds fail ayyaya?
+
+Main branches like develop, master build success avuthunnaya?
+
+
+2. Pipeline Failures Analysis
+Failed jobs lo logs check cheyyadam.
+Code issue, test case failure, environment issue… yedhi cause choodali.
+
+
+3. Queued Jobs Monitor cheyyadam
+Queue lo stuck aina jobs unnaya? Executors free unnaya?
+
+
+4. Disk Usage Monitoring
+Jenkins master or agent nodes lo disk full avvakunda chudali.
+Old workspaces, builds, and logs ni cleanup cheyyadam.
+
+
+5. User Requests Handle cheyyadam
+Developers nunchi build access kavali, new job create cheyyali ani requests vasthai.
+Avi quick ga handle cheyyadam.
+
+
+6. Backup Verification (if daily configured)
+Daily backup jobs run ayyaya? Logs lo verify cheyyadam.
+
+
+
+
+---
+
+Weekly Tasks (Periodic Responsibilities)
+
+1. Job Configuration Review
+New jobs ni standard naming & folder structure lo set chesara leda check cheyyadam.
+Hard-coded values unte variables lo marchadam.
+
+
+2. Credential Store Review
+Jenkins credentials manager lo unnecessary secrets unte remove cheyyadam.
+Passwords rotate chesara leda verify cheyyadam.
+
+
+3. Node Agents Health Check
+Agent machines online lo unnaya? Executor load balance vundaa?
+
+
+4. Plugin Update Check
+Any plugins outdated ga unnaya? Security updates available ga unnaya?
+
+
+5. Jenkinsfile Review
+Branches lo Jenkinsfile lo best practices follow avtunnaya?
+Unwanted stages unte cleanup suggest cheyyadam.
+
+
+6. Test Coverage & SonarQube Reports Check
+Test execution stage lo coverage percentage thaggutundaa?
+Sonar quality gates pass avtunnaya?
+
+
+
+
+---
+
+Monthly Tasks (Strategic Responsibilities)
+
+1. Jenkins Backup Strategy Audit
+Full Jenkins home backup test cheyyadam.
+Restore process once simulate cheyyadam to verify.
+
+
+2. Jenkins Server Upgrade Planning
+Long-term lo Jenkins core or plugin upgrades required unte, downtime plan cheyyadam.
+
+
+3. Security Review
+
+
+
+Admin user access audit cheyyadam
+
+CSRF protection, matrix authorization enable vundaa check cheyyadam
+
+
+4. Build Time & Load Analysis
+Build jobs ekkuva time teesukuntunnaya?
+Nodes ki sufficient resources unnaya? Horizontal scaling kavala analyze cheyyadam.
+
+
+5. Automation for Job Creation
+Seed jobs use chesi job creation automate cheyyadam (Job DSL / Jenkins API).
+
+
+6. CI/CD Best Practices Session with Team
+Developers ki small training ivvadam –
+branching, PR validations, build triggers ela vuntayo explain cheyyadam.
+
+
+
+
+
+KK Funda Message
+
+Jenkins lo builds run cheyyadam kante,
+"CI/CD culture" maintain cheyyadam is the real DevOps role.
+Automation lo confidence undali…
+Code change vachesarike testing, quality check, packaging, and deploy aipoevali —
+That’s the power of Jenkins when managed properly.
+
+
+DevOps Engineer – Docker Daily, Weekly, Monthly Tasks & Responsibilities
+
+Daily Tasks (Everyday Responsibilities)
+
+1. Container Health Monitoring
+Running containers status check cheyyadam.
+docker ps output verify cheyyadam – app containers running state lo unnaya?
+
+
+2. Docker Logs Verification
+Application related errors or crash reason ki container logs analyze cheyyadam.
+If any container restart avuthunte immediate ga logs chudali.
+
+
+3. CI/CD Pipeline Lo Docker Builds Check
+Docker images build avuthunnaya?
+Tagging correct ga vundaa?
+Jenkins lo image build job success aindaa chudali.
+
+
+4. Image Size & Layer Monitoring
+Recent builds lo image size sudden ga periginda?
+Base images proper ga use chesaraa check cheyyadam.
+
+
+5. Docker Daemon Status Monitoring
+Daemon (docker service) active lo vundaa?
+Host level lo container memory or CPU spike vunda chudali.
+
+
+6. Container Cleanup (Optional)
+Local ga unnecessary stopped containers and dangling images clean cheyyadam.
+
+
+
+
+---
+
+Weekly Tasks (Periodic Responsibilities)
+
+1. Dockerfile Review & Optimization
+Teams create chesina Dockerfiles review cheyyadam.
+Unnecessary layers remove cheyyadam.
+Best practices implement cheyyadam.
+
+
+2. Base Image Audit
+All applications ki use chesina base images review cheyyadam – vulnerabilities unnaya?
+Lightweight and secure images select chesaraa?
+
+
+3. Registry Image Validation
+DockerHub or ECR lo store ayye images valid aa, latest tags overwrite avvatledaa chudali.
+Accidental overwrite jarigindaa verify cheyyadam.
+
+
+4. Tagging & Versioning Standards Enforcement
+Every build lo version-based tag vundaa?
+latest tag avoid chesaraa?
+
+
+5. Docker Compose File Reviews
+If local or staging lo compose files use chestunnaru ante – valid structure, ports clash avvatledaa verify cheyyadam.
+
+
+6. Internal Container Network Testing
+Inter-container communication proper ga work avtundaa telusukovadam (ex: app → DB reachability).
+
+
+
+
+---
+
+Monthly Tasks (Strategic Responsibilities)
+
+1. Image Vulnerability Scan Reports
+Snyk, Trivy, or Docker Scan tools tho image vulnerabilities ni scan cheyyadam.
+Reports prepare cheyyadam → teams ki forward cheyyadam.
+
+
+2. Docker Registry Cleanup & Storage Management
+Old/unused images ni remove cheyyadam → registry size reduce cheyyadam.
+Billing optimize cheyyadam if using ECR/GCR.
+
+
+3. Containerization Training for Developers
+Docker basics, build strategies, caching techniques developers ki explain cheyyadam.
+Best Dockerfile practices share cheyyadam.
+
+
+4. Performance Benchmarking of Containers
+Resource usage analysis – which container is using more memory or CPU?
+Optimization recommendations ichadam.
+
+
+5. Backup & Restore Strategy Testing (for container volumes)
+Container volumes lo unna data ki backup plan test cheyyadam (ex: named volumes, bind mounts).
+
+
+6. Incident Review Related to Containers
+Last month lo container crash, app slowness, port issues, image mismatches — anni discuss cheyyadam.
+Fix ni permanent cheyyali.
+
+
+
+---
+
+KK Funda Message
+
+"Container ni run cheyyatam easy…
+Kani secure, scalable, and production-ready ga run cheyyatam ki docker lo deep understanding chala important."
+
+Best practice ante Dockerfile lo FROM line nunchi start avutundi,
+Mari production success ante image trust mida end avtundi.
+
+
+DevOps Engineer – Kubernetes Daily, Weekly, Monthly Tasks & Responsibilities
+
+
+---
+
+Daily Tasks (Everyday Responsibilities)
+
+1. Cluster Health Check
+Pods, Nodes, Services status chudadam.
+kubectl lo pods status check cheyyadam, node health Ready/NotReady check cheyyadam.
+
+
+2. Monitoring Alerts Verification
+Grafana, Prometheus, Datadog, New Relic laanti monitoring tools lo metrics monitor cheyyadam.
+CPU, Memory, Disk usage spikes unda leda chudadam.
+Auto-scaling proper ga work avtunda check cheyyadam.
+
+
+3. CI/CD Pipeline Status Check
+Jenkins, GitHub Actions laanti tools lo deployments success avutunnaya chudadam.
+Failed deployments unte fix cheyyadam or team ki escalate cheyyadam.
+
+
+4. Application Logs Check
+Critical services logs chusi errors identify cheyyadam.
+Logging stack lo logs analyze cheyyadam.
+
+
+5. Support Tickets Handling
+Small issues like pod restarts, config changes solve cheyyadam.
+Access requests approve cheyyadam.
+
+
+6. Team Standup Participation
+Daily standup lo work updates cheyyadam, any blockers unte discuss cheyyadam.
+
+
+
+
+---
+
+Weekly Tasks (Periodic Responsibilities)
+
+1. Cluster Resource Usage Analysis
+Resource utilization reports prepare cheyyadam.
+Unnecessary resources identify chesi scale down cheyyadam.
+
+
+2. Deployment Verification & Testing
+Staging or QA environment lo production release testing cheyyadam.
+Canary deployments verify cheyyadam.
+
+
+3. Kubernetes Upgrades & Patch Planning
+Minor version updates or security patches identify cheyyadam.
+Maintenance windows plan cheyyadam.
+
+
+4. RBAC Review
+Team members permissions review cheyyadam.
+Unnecessary privileges remove cheyyadam.
+
+
+5. Helm Charts Review & Updates
+Helm chart templates check cheyyadam.
+Values.yaml optimization or cleanup cheyyadam.
+
+
+6. Security Scan Reports Review
+Container image vulnerabilities review cheyyadam.
+Security fixes plan cheyyadam.
+
+
+
+
+---
+
+Monthly Tasks (Strategic Responsibilities)
+
+1. Disaster Recovery Simulation & Backup Testing
+Backups verify cheyyadam.
+Disaster Recovery drills run cheyyadam.
+
+
+2. Capacity Planning & Scaling Decisions
+Future project resource needs estimate cheyyadam.
+Node scaling and budget approvals plan cheyyadam.
+
+
+3. Cluster Cost Optimization Reports
+Cloud bills analysis cheyyadam.
+Cost optimization ideas suggest cheyyadam.
+
+
+4. Security Policy & Compliance Checks
+Network policies, security settings review cheyyadam.
+Compliance audit preparation cheyyadam.
+
+
+5. Team Training & Knowledge Sharing
+Internal trainings, Kubernetes workshops conduct cheyyadam.
+Latest Kubernetes features discuss cheyyadam.
+
+
+6. Incident Postmortems & RCA Reviews
+Past month incidents review cheyyadam.
+RCA documents prepare cheyyadam.
+Permanent fixes discuss cheyyadam.
+
+---
+
+KK Funda Message:
+
+DevOps Engineer ante tools operate cheyyadam kaadu…
+Pod, pipeline, infra, monitoring, backup, security — anni me hands lo untayi.
+Patience, process, and planning valla Kubernetes success vastundi.
+
+
+Real-Time Git Mistakes in Teams 
+
+1. Direct ga main branch ki push cheyyadam
+Chala mandi feature branch create cheyyakunda direct ga main/master branch ki code push chestaru.
+Ee mistake valla project lo tests skip avtayi, builds fail avtayi, and sometimes app break ayipotundi.
+
+
+
+Correct way: Feature branch create cheyyali, pull request (PR) dvara merge cheyyali, team review tarvata.
+
+2. Pull cheyyakunda push cheyyadam
+Developer local lo code modify chesi, latest code pull cheyyakunda push chestadu.
+Appudu non-fast-forward error vasthadi or code conflict avvachu.
+Worst case lo, vere valla changes override ayye chance vuntundi.
+
+
+
+Correct way: Push cheyyadam mundu always git pull cheyyadam chala important.
+
+3. Merge conflicts ni properly resolve cheyyakapovadam
+Code merge chesetappudu conflict vachinappudu, chala mandi random ga lines delete chestaru.
+A markers (<<<< HEAD etc.) file lo ne vadilipettestaru.
+Result: Broken code, production lo errors.
+
+
+
+Correct way: Calm ga each line check chesi, meaningful merge cheyyali.
+
+4. Secrets or large files repo lo push cheyyadam
+.env, .pem, .log files, images ni repository lo add chesi commit chestaru.
+Ee mistake valla credentials leak avvachu, repo size chala perigipothundi.
+
+
+
+Correct way: .gitignore lo vaati names mention cheyyali and production secrets never push cheyyali.
+
+5. Meaningless commit messages
+Chala mandi commit message lo just “update”, “fix”, “temp” ila rasestaru.
+Future lo yevadi commit yento, em purpose tho chesado ardham kaadu.
+
+
+
+Correct way: Commit message lo task clarity undali – yedhi fix chesaru, yedhi change chesaru ani.
+
+
+---
+
+KK Funda Message:
+Git lo mistake ante chinna vishayam la anipistundi…
+But production build fail, code loss, rollback, even job loss ki kuda reason avutundi.
+Git ante code history kakunda – team communication tool.
+
+
+Production Issue: Wrong Docker Image Deployed
+
+Time: Night 9:40 PM
+Deployment: user-service latest version deploy chesaru via Jenkins
+Impact: Login functionality not working – all users unable to log in
+Alert: Uptime alert + client call: "Production login failing"
+
+
+---
+
+Step-by-Step Investigation
+
+Step 1: Validate Deployment Status
+Jenkins job lo build success ayindi
+Kani production lo logs check chesina:
+
+kubectl logs user-service-xyz
+
+– Error: "Missing method: validateUserSession()"
+
+Step 2: Docker Image Check
+
+Deployed image:
+
+docker.io/kkfunda/user-service:latest
+
+Checked manually:
+
+docker inspect user-service:latest
+
+→ This tag is pointing to an older dev build, not the new tested release
+
+Step 3: Git Tag vs Image Tag mismatch
+
+Developer code base lo correct version tagged: v2.5.3
+But Jenkins pipeline lo tag as latest unchadam valla, old image pull ayyindi.
+
+
+---
+
+Root Cause (RCA)
+
+Docker image latest tag overwrite ayyindi multiple times
+
+Production pipeline lo fixed version tag (e.g., v2.5.3) vadali, but dynamic latest vadadam valla mismatch ayyindi
+
+No image digest verification chesaru before deployment
+
+
+Final RCA:
+CI/CD pipeline lo improper tagging + No verification → Wrong image deployed → Functionality broken
+
+
+---
+
+Fix Applied
+
+Immediately rollback chesaru:
+
+
+kubectl rollout undo deployment user-service
+
+Verified stable image manually:
+
+
+kubectl set image deployment/user-service user-service=docker.io/kkfunda/user-service:v2.5.2
+
+Updated Jenkinsfile to use versioned tags:
+
+
+docker build -t kkfunda/user-service:${BUILD_TAG} .
+
+
+---
+
+Preventive Actions
+
+1. Never use latest tag in production deployments
+
+
+2. Use versioned, immutable tags (e.g., v2.5.4)
+
+
+3. Enable image digest lock (SHA-based deployment)
+
+
+4. Implement image tag validation step before kubectl apply
+
+
+5. Slack alert or notification for image version deployed to prod
+
+
+
+
+---
+
+KK Funda Voice
+
+> "Docker image wrong version ante small mistake la anipistundi… kani production lo adi pedda crash. DevOps engineer ki versioning, tagging, rollback – anni clear ga undali. Every deployment should be intentional and traceable."
+
+
+
+
+KK FUNDA
+
+
+Production Issue: Disk Full Due to Logs
+
+Time: Afternoon 3:15 PM
+Alert: EC2 instance /var disk 95% usage reach ayyindi
+Service: payment-service running on that server
+Impact: Jenkins job build failure + application logs stop avvadam start ayyindi
+
+
+---
+
+Step-by-Step Investigation
+
+Step 1: Disk usage check chesaru
+
+df -h
+
+– /var/log/ almost 100% full
+
+Step 2: Check which files are large
+
+du -sh /var/log/*
+
+– Found payment-service.log file is 6GB+
+
+Step 3: Check log rotation status
+
+ls /etc/logrotate.d/
+
+– For this service, no rotation config found. So logs are continuously growing
+
+
+---
+
+Root Cause (RCA)
+
+payment-service logs continuous ga /var/log/ lo generate avutunnayi
+
+logrotate configure cheyyaledu
+
+3 days lo file 6+ GB reach ayi, disk full ayi service impact ayyindi
+
+
+Final RCA:
+No log rotation configured → Log file grew large → Disk full → Service + Jenkins affected
+
+
+---
+
+Fix Applied
+
+Unnecessary old logs delete chesaru:
+
+
+rm -rf /var/log/payment-service.log.1
+
+Immediate logrotate config create chesaru:
+
+
+nano /etc/logrotate.d/payment-service
+
+/var/log/payment-service.log {
+    daily
+    missingok
+    rotate 7
+    compress
+    delaycompress
+    notifempty
+    create 0640 root root
+}
+
+Manually rotate cheyyadam ki:
+
+
+logrotate -f /etc/logrotate.d/payment-service
+
+
+---
+
+Preventive Actions
+
+1. All services ki logrotate configure cheyyadam mandatory
+
+
+2. Alerting system lo disk > 80% usage ante alert ravatam
+
+
+3. Logs ni S3 bucket lo archive cheyyadam (log shipping)
+
+
+4. Docker container logs ki size limit veyyadam with max-size and max-file
+
+
+5. Weekly cron job to clean up old logs
+
+
+
+
+---
+
+KK Funda Voice
+
+> "Logs ni ignore cheyyadam ante silent ga ticking time bomb maintain cheyyadam laanti vishayam. Disk full ayithe build, deployment, app – anni impact avutayi. DevOps engineer ki log management kuda oka core skill."
+
+
+Production Issue: Home Page Loading Slow for All Users
+
+Time: Morning 10:20 AM
+Alert: New Relic alert – "Homepage API latency > 3s for 95% users"
+Impact: Customers are complaining app slow undi ani
+Service: Frontend Service (React + Node.js)
+
+
+---
+
+Step-by-Step Investigation
+
+Step 1: Monitoring tools open chesaru (New Relic, Grafana)
+– Request count stable undi
+– Latency sudden ga perigindi
+– DB queries execution time spike chesindi
+
+Step 2: DB logs check chesaru
+Aurora logs lo recent query time 7+ seconds ki perigindi
+Query: SELECT * FROM products WHERE status = 'available';
+
+Step 3: Query Execution Plan chusaru
+Index use avvatam ledu → full table scan jarugutondi
+
+
+---
+
+Root Cause (RCA)
+
+Last night developer code push chesadu with a small change
+
+New column product_visibility add chesadu, but index create cheyyaledu
+
+Existing query now fetching based on new column too
+
+DB slow response valla app frontend loading delay avutondi
+
+
+Final RCA:
+Missing DB index after schema change
+Leads to full table scan and high latency
+
+
+---
+
+Fix Applied
+
+Infra team immediate ga DB index create chesaru on product_visibility column
+
+Query optimized and execution time dropped to < 200ms
+
+App response speed back to normal
+
+
+
+---
+
+Preventive Actions
+
+1. DB Index Review Process:
+Any schema changes should go through index requirement validation.
+
+
+2. Performance Testing Before Prod Deploy:
+UAT lo query performance check mandatory.
+
+
+3. Query Monitoring Setup:
+Long running query alerts enable cheyyadam
+
+
+4. Developer Checklist Update:
+Code push ki mundu DB optimization verify cheyyadam
+
+
+
+
+---
+
+KK Funda Voice
+
+> "Production issues anni pedda bugs tho raanu. Sometimes oka index lekapotam valla app loading slow ayipothundi. DevOps engineer ki developer code change impact kuda artham avutundali. Tools use cheyyadam oka side, but problem ki root ki velle thinking important."
+
+
+
+KK FUNDA
+
+
+Production Deployment Failure – Real-Time Scenario with RCA
+
+Situation:
+Evening 6:30 PM ki production deployment start chesaru.
+Jenkins pipeline successful, but customer portal open avvatledu.
+Client nunchi high priority ticket ochindi – “Production site down”.
+
+
+---
+
+Step-by-Step Investigation:
+
+Step 1: Basic Health Check
+DevOps engineer EC2 instance login ayi service status check chesadu.
+App service running undi, kani response ledu.
+
+Step 2: Logs Verification
+Application logs chusaru –
+Error: Database connection refused.
+
+Step 3: Infra Status Check
+DB instance status check chesaru →
+Aurora DB restarted recently, new endpoint generated.
+
+Step 4: Configuration Mismatch
+Latest deployment lo config.yaml file lo DB endpoint update cheyyaledu.
+Old endpoint use chesindi, anduke connection fail ayyindi.
+
+
+---
+
+RCA (Root Cause Analysis):
+
+Root Cause:
+DB instance restart valla endpoint change ayyindi.
+App configuration lo old endpoint use chesaru.
+Code lo environment variable auto pull cheyyadam ledu.
+
+Category:
+Configuration management failure.
+Lack of validation before production release.
+
+Impact:
+Production site down for 14 minutes.
+Business users unable to login or place orders.
+
+
+---
+
+Next Actions / Preventive Steps:
+
+1. Automated Config Check:
+CI/CD pipeline lo DB endpoint validation add cheyyadam.
+
+
+2. Rollback Plan Mandatory:
+Deployment ki mundu rollback ready undali (image version or helm rollback).
+
+
+3. Update Runbooks:
+DB endpoint changes epudaithe jaruguthayo, app config automatic update avvadam lekapote manual step mandatory ga mention cheyyali.
+
+
+4. Slack Alert for DB Restart:
+DB instance restart aina alert ops team ki immediate ga ravalani CloudWatch lo rule petti setup cheyyadam.
+
+
+5. Postmortem Meeting:
+Team meeting lo ee incident discuss cheyyadam and ownership clarity ivvadam.
+
+
+6. Add Pre-deploy Validation Job:
+Jenkins pipeline lo config check stage add cheyyadam, especially for DB & critical variables.
+
+
+
+
+---
+
+In Short (Summary):
+
+Issue: Production deployment successful kaani app connect avvatledu
+Root Cause: DB endpoint change + config.yaml update avvakapovadam
+Fix: Correct endpoint ni add chesi redeploy
+Preventive Actions: Config validation, alerts, rollback plan
+
+
+---
+
+KK Funda Voice:
+
+
+“Production lo one small config kuda chala pedda issue create chesthundi.
+Deployment ante code push kaadu – validation, alerting, backup, and rollback anni plan lo unte ne success.”
+
+
+L1, L2, L3 Support Explanation 
+
+L1 Support ante first level support. Mostly freshers or junior engineers untaru. Ivaru main ga monitoring tools like Nagios, Grafana lo alerts chusi, basic ga system health ni check chestaru. Ticketing tools like Jira or ServiceNow use chesi, ticket receive chesi proper team ki forward cheyyadam valla main duty.
+
+Example: CPU usage ekkuva undi alert vachindi. L1 engineer chusi, service restart chesi, inka alert vastunda leda ani monitor chestadu. Lekapote, L2 team ki escalate chestadu.
+
+L2 Support ante slightly experienced engineers untaru (2 to 4 years). Ivaru logs chusi actual issue identify cheyyagalru. Jenkins, Docker, Linux lo hands-on experience vuntadi. Minor script changes, deployment issues, config mismatches ni fix cheyyadam valla responsibility.
+
+Example: Jenkins lo build fail aindi. L2 engineer logs chusi, docker image tag mismatch ani identify chesi fix chestadu. Sometimes Helm chart or terraform config issues ni kuda solve chestaru.
+
+L3 Support ante senior engineers, DevOps architects or developers untaru. Vallaki application code, infra design, performance tuning anni mida clarity vuntadi. P1 or P0 issues, code-level bugs, or infrastructure design issues handle cheyyadam vallaki cheppindi.
+
+Example: Application random ga crash avutundi. L3 team code level lo memory leak identify cheyyadam, dockerfile optimize cheyyadam, or DB performance tuning cheyyadam valla role lo untadi.
+
+One simple example:
+
+Customer portal open avvatledu.
+
+L1: Monitor lo alert chusi ticket create chestadu.
+
+L2: Jenkins logs chusi issue fix cheyyadam try chestadu.
+
+L3: Code or infra level lo actual root cause identify chesi permanent solution provide chestadu.
+
+Summary:
+
+L1 – Monitor and forward (Junior level)
+L2 – Logs analysis, fix issues (Mid level)
+L3 – Deep fix, code/infrastructure level (Expert level)
+
+
+Production Issue RCA – DevOps Engineer Perspective
+
+Issue Summary
+
+Time: 3:45 PM IST
+
+Service: cart-service (Java + Spring Boot)
+
+Environment: Production
+
+Incident: 502 Bad Gateway from ALB
+
+Impact: Users unable to access cart-service; revenue impact
+
+
+
+---
+
+Step 1: Incident Detection
+
+Alert received from Datadog for high 5xx errors on cart-service endpoint
+
+Slack channel triggered an alert message automatically
+
+SLA for first response: 15 minutes
+
+
+
+---
+
+Step 2: Initial Investigation
+
+Logged into AWS Console to check ALB target group health
+
+Found cart-service instances marked as unhealthy
+
+SSH'd into EC2 instance running the service and confirmed the app wasn't listening on port 8080
+
+Ran systemctl status cart-service and saw that the service had failed to start
+
+
+
+---
+
+Step 3: Analyze Logs
+
+Ran journalctl -u cart-service --since "30 minutes ago"
+
+Found error: java.lang.NumberFormatException due to missing environment variable DB_PORT
+
+
+
+---
+
+Step 4: Check CI/CD Pipeline
+
+Jenkins pipeline showed a successful deployment
+
+Deployment YAML had a new environment variable (DB_PORT)
+
+Kubernetes Secret didn't include this value, so the container crashed on startup
+
+
+
+---
+
+Step 5: Temporary Fix (Hotfix)
+
+Manually updated the missing environment variable in Kubernetes secret using kubectl edit secret
+
+Redeployed the pod using kubectl rollout restart deployment cart-service -n production
+
+App became healthy again and traffic resumed through ALB
+
+
+
+---
+
+Step 6: Post-Incident Actions
+
+Issue resolved by 4:20 PM
+
+Total downtime: 35 minutes
+
+
+
+---
+
+Root Cause
+
+Jenkins pipeline deployed a change that depended on a new environment variable DB_PORT, but the value was missing in the Kubernetes secret, causing the application to crash and show 502 errors.
+
+
+---
+
+Corrective Actions
+
+1. Add a secret validation step in the Jenkins pipeline
+
+
+2. Enable readiness and liveness probes in Kubernetes to detect such issues early
+
+
+3. Update Helm chart values to ensure all required secrets are included
+
+
+4. Improve alert descriptions to indicate possible environment variable errors
+
+
+
+
+---
+
+Lessons Learned
+
+Never deploy without validating all required environment variables
+
+Avoid non-backward compatible changes in production
+
+Ensure Dev and DevOps teams are aligned when introducing new config changes
+
+Thinking of accepting that job offer? WAIT!
+
+Before signing any offer letter, make sure you verify these 13 critical points — your career deserves clarity!
+
+1. Designation & Role Clarity
+
+
+2. Salary Breakup & CTC Distribution
+
+
+3. Leave Policy
+
+
+4. Working Hours & Weekly Offs
+
+
+5. Health Insurance & Medical Benefits
+
+
+6. Probation Period Terms
+
+
+7. Notice Period Duration
+
+
+8. Perks, Allowances & Other Benefits
+
+
+9. Bonuses & Pension Contributions
+
+
+10. Full & Final Settlement (FNF) Policy
+
+
+11. Workplace Culture & Team Environment
+
+
+12. Appraisal Frequency & Criteria
+
+
+13. Training & Career Development Opportunities
+
+Don’t get trapped in a job you’ll regret. Ask the right questions — Stay informed, stay confident!
+
+---
+
+Interview Explanation
+
+In one of my previous roles, we faced a 502 error in production due to a missing environment variable. I led the RCA, identified the issue through logs, fixed it by patching the Kubernetes secret, and later added a validation step in the Jenkins pipeline to prevent future occurrences.
+
+What Should a DevOps Engineer Do in the First Week of Joining a Company?
+---
+
+Day 1 – Orientation & Access Setup
+
+Attend HR & IT induction sessions
+
+Set up email, VPN, and communication tools like Slack or Teams
+
+Get access to Git, Jenkins, Cloud accounts (AWS, GCP, Azure)
+
+Complete any mandatory security/compliance training
+
+
+
+---
+
+Day 2 – Understand the Environment
+
+Request the system architecture and CI/CD pipeline diagrams
+
+Understand the tools being used: Jenkins, Docker, Kubernetes, etc.
+
+Verify access to repos, cloud, monitoring tools
+
+
+
+---
+
+Day 3 – Explore CI/CD and Codebase
+
+Understand build, test, and deploy pipelines
+
+Check rollback strategy and deployment frequency
+
+Clone major code repositories and explore structure
+
+
+
+---
+
+Day 4 – Infra & Monitoring Tools
+
+Review Infrastructure as Code (Terraform, CloudFormation, etc.)
+
+Explore monitoring and alerting setup (Grafana, ELK, CloudWatch)
+
+Understand incident management process
+
+
+
+---
+
+Day 5 – Start Small, Learn Fast
+
+Pick a small task: script, job tweak, or infra setup
+
+Document all access links, contacts, processes
+
+Start contributing and learning actively
+
+
+
+---
+
+Pro Tips:
+
+Shadow senior DevOps engineers and attend stand-ups
+
+Don’t hesitate to ask questions
+
+Start building your DevOps playbook
+
+
+
+---
+
+Want more DevOps career tips and real-time scenarios? Subscribe to KK Funda and stay ahead in your DevOps journey!
+
+
+
+
+
+
