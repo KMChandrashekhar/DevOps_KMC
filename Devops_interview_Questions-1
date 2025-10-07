@@ -1,0 +1,64 @@
+Test ID: 2023OPSP02
+Innoventes Technologies India Pvt. Ltd
+Sujata.d guys recently attend devops interview questions 
+
+DevOps Test
+Section 1: Programming Test
+Download the logfile. Write scripts/programs in any scripting/programming language to do the
+following:
+- Scan the log file for POST requests and create a summary in CSV format that lists each
+unique IP address and the number of POST requests corresponding to that IP address.
+- The example of the CSV is as below:
+164.242.88.10, 23
+abc.com, 4
+. .
+
+Section 2: Docker question
+Clone the Java application from Github. Write a Dockerfile to containeraise the application. You
+can submit the docker file alone.
+
+Section 3: Linux
+● What command would you use to find how many disks are mounted on a linux system
+● What command would you use to find the free/available & used RAM in a linux system?
+● What command would you use to search for a file called ‘important.txt’ that is present
+somewhere on the filesystem?
+● What shell environment variables have you used in your day to day work?
+● How would you know if a linux system is running out of RAM and whether it is using swap
+space?
+● While booting a linux system, it gets stuck. The error message indicates that the boot
+sequence is stuck while trying to mount a non-existent disk. What would you do to
+recover from this situation?
+● What command would you use to find all lines containing any of the words “hello”,
+“world”, “foo” and “bar”, in all text files in a given directory? Note that a single command
+should look for all those 4 words.
+
+Section 4: AWS (Optional)
+● Have you used AWS CLI for accessing services such as IAM / EC2 / VPC / EBS / S3 /
+RDS ?
+● Can you look at the AWS CLI documentation and write the command for printing all tags
+of an S3 bucket?
+● Can you look at the AWS CLI documentation and write the command for printing all
+volumes of type “gp3” that are attached to a given EC2 instance? This can be a
+single command or a linux command pipeline.
+● Have you used Python Boto3 SDK / APIs accessing services such as IAM / EC2 / VPC /
+EBS / S3 / RDS?
+● Can you write a Python Boto3 SDK based script to add the tag “Department” with value
+“Engineering”, to all EC2 instances in a given VPC ?
+● Can you write a Python Boto3 SDK based script to remove all ingress rules which allow
+traffic from “0.0.0.0/0”, from all security groups in a given VPC?
+● Give the terraform configuration for creating a single EC2 instance on AWS.
+Test ID: 2023OPSP02
+Innoventes Technologies India Pvt. Ltd
+
+How to submit
+● Scripting & programming questions in Section 1 should be submitted as runnable
+script/programs with proper extensions. Add a readme file describing the
+programming/scripting language used and the steps to run the script.
+● Answers to Section 2 should be submitted as a Dockerfile
+● Answers to Section 3 & 4 can be submitted as a regular text file.
+● zip all the files together and send to jobs@innoventes.co or share through Google
+drive
+
+Evaluation criteria:
+● Answers provided to the questions
+● Code Quality in programming questions
