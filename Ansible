@@ -79,3 +79,76 @@ ansible-playbook site.yml -l webserver1
 
 10. What is the default port used by Ansible to connect to remote hosts?
 👉 Port 22 (SSH) for Linux, Port 5985/5986 (WinRM) for Windows.
+
+Ansible Intermediate Questions with Answers
+
+1. How does Ansible achieve agentless communication with managed nodes?
+👉 Ansible uses SSH for Linux/Unix and WinRM for Windows to connect to managed nodes. No agent installation is required.
+
+2. Explain handlers in Ansible and when you use them.
+👉 Handlers are tasks triggered only when notified by another task.
+Example: Restart service only if config file changes.
+
+tasks:
+  - name: Copy config file
+    copy: src=app.conf dest=/etc/app.conf
+    notify: Restart app
+
+handlers:
+  - name: Restart app
+    service: name=app state=restarted
+
+
+3. What are facts in Ansible? How can you use them?
+👉 Facts are system properties collected automatically (OS, IP, CPU, memory).
+They are accessed using ansible_facts.
+Example:
+
+debug: var=ansible_facts['default_ipv4']['address']
+
+
+4. How do you encrypt sensitive data in Ansible?
+👉 Use Ansible Vault.
+
+ansible-vault create secrets.yml
+ansible-vault encrypt file.yml
+ansible-playbook site.yml --ask-vault-pass
+
+
+5. Difference between roles and playbooks in Ansible?
+👉 Playbooks = define automation tasks in YAML.
+👉 Roles = structured way to organize playbooks into reusable units (tasks, handlers, variables, templates, etc.).
+
+6. How do you use variables in Ansible? What is variable precedence?
+👉 Variables can be defined in inventory, playbooks, vars_files, or passed via CLI.
+👉 Precedence → CLI vars > Playbook vars > Role vars > Inventory vars > Default vars.
+
+7. How does Ansible Galaxy help in playbook development?
+👉 Ansible Galaxy is a community hub to share/download pre-built roles.
+Example:
+
+ansible-galaxy install geerlingguy.mysql
+
+
+8. How do you use tags in Ansible? Why are they useful?
+👉 Tags allow selective execution of tasks.
+Example:
+
+- name: Install Apache
+  yum: name=httpd state=present
+  tags: apache
+
+
+Run only apache tasks:
+
+ansible-playbook site.yml --tags apache
+
+
+9. What is the purpose of ansible-vault and how do you use it?
+👉 Used to encrypt secrets (passwords, API keys).
+Example:
+
+ansible-vault encrypt secrets.yml
+ansible-playbook play.yml --ask-vault-pass
+
+
