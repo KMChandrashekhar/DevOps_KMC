@@ -1,1 +1,81 @@
+Ansible Basic Questions with Answers
 
+1. What is Ansible and why is it used in DevOps?
+👉 Ansible is an open-source IT automation tool used for configuration management, application deployment, and orchestration. It is agentless (uses SSH/WinRM), simple to use, and helps maintain consistency across servers.
+
+2. What are the advantages of Ansible over other configuration management tools?
+👉 Advantages:
+
+Agentless (no software needed on managed nodes)
+
+Simple YAML-based playbooks (easy to read/write)
+
+Idempotent (ensures same result regardless of repeated execution)
+
+Scalable & lightweight compared to Puppet/Chef
+
+3. Explain the difference between Ansible ad-hoc commands and playbooks.
+👉 Ad-hoc commands are one-time tasks (e.g., restart a service).
+👉 Playbooks are YAML files used for repeatable, structured automation with multiple tasks.
+
+Example:
+
+ansible all -m ping      # Ad-hoc
+ansible-playbook site.yml # Playbook
+
+
+4. What is an inventory file in Ansible? What are its types?
+👉 Inventory file lists the target hosts.
+
+Static Inventory → hosts defined in a file (/etc/ansible/hosts)
+
+Dynamic Inventory → fetched dynamically (e.g., AWS, GCP, Azure plugins)
+
+5. What are modules in Ansible? Give examples.
+👉 Modules are small programs used to perform tasks.
+Examples:
+
+copy → copy files
+
+yum/apt → install packages
+
+service → manage services
+
+user → manage users
+
+6. What is the use of ansible.cfg file?
+👉 It defines Ansible configuration such as:
+
+Inventory file path
+
+SSH connection settings
+
+Timeout values
+
+Privilege escalation
+
+7. Difference between command and shell module?
+👉 command → executes command without shell features (no pipes, no redirection).
+👉 shell → executes inside shell (supports pipes, variables, redirection).
+
+Example:
+
+- name: Using command
+  command: cat /etc/passwd
+  
+- name: Using shell
+  shell: cat /etc/passwd | grep root
+
+
+8. What is an idempotent task in Ansible?
+👉 A task is idempotent if running it multiple times produces the same result without making unnecessary changes.
+Example: Installing a package → if already installed, no changes.
+
+9. How do you run a playbook against a single host?
+👉 By specifying host in inventory or using -l flag.
+
+ansible-playbook site.yml -l webserver1
+
+
+10. What is the default port used by Ansible to connect to remote hosts?
+👉 Port 22 (SSH) for Linux, Port 5985/5986 (WinRM) for Windows.
