@@ -1,0 +1,158 @@
+End-to-End DevOps Project: Deploying a Scalable Application Using AWS, Docker, Kubernetes, Git, Terraform, Ansible, and Monitoring with Grafana & Prometheus
+
+Project Overview
+
+This project focuses on deploying a scalable web application using AWS cloud 
+infrastructure, Docker for containerization, Kubernetes for orchestration, Terraform for 
+infrastructure provisioning, Ansible for configuration management, Git for version control, 
+and Prometheus & Grafana for monitoring.
+
+Tech Stack
+• Cloud Provider: AWS
+• Version Control: Git, GitHub
+• Infrastructure as Code (IaC): Terraform
+• Configuration Management: Ansible
+• Containerization: Docker
+• Orchestration: Kubernetes (EKS)
+• CI/CD Pipeline: Jenkins
+• Monitoring & Logging: Prometheus & Grafana
+
+Project Workflow
+1. Provision Infrastructure on AWS using Terraform
+2. Configure Servers using Ansible
+3. Containerize Application using Docker
+4. Deploy Containers to Kubernetes (EKS)
+5. Implement CI/CD Pipeline using Jenkins & Git
+6. Monitor Performance using Prometheus & Grafana
+
+Step 1: Infrastructure Provisioning with Terraform
+Terraform is used to create AWS infrastructure, including an EC2 instance, VPC, EKS 
+Cluster, and necessary IAM roles.
+Terraform Code to Set Up AWS Infrastructure
+provider "aws" {
+ region = "us-east-1"
+}
+resource "aws_vpc" "dev_vpc" {
+ cidr_block = "10.0.0.0/16"
+}
+resource "aws_subnet" "dev_subnet" {
+ vpc_id = aws_vpc.dev_vpc.id
+ cidr_block = "10.0.1.0/24"
+ availability_zone = "us-east-1a"
+}
+resource "aws_eks_cluster" "dev_cluster" {
+ name = "dev-cluster"
+ role_arn = aws_iam_role.eks_role.arn
+ vpc_config {
+ subnet_ids = [aws_subnet.dev_subnet.id]
+ }
+}
+Run the Terraform script:
+terraform init
+terraform apply -auto-approve
+
+Step 2: Configuration Management with Ansible
+Ansible is used to configure the Kubernetes nodes and install necessary dependencies.
+Ansible Playbook to Install Docker & Kubernetes
+- hosts: all
+ become: yes
+ tasks:
+ - name: Install Docker
+ apt:
+ name: docker.io
+ state: present
+ - name: Install Kubernetes Packages
+ apt:
+ name: ["kubelet", "kubeadm", "kubectl"]
+ state: present
+Run the playbook:
+ansible-playbook setup.yaml -i inventory
+
+Step 3: Containerizing Application with Docker
+A Node.js application is containerized using Docker.
+Dockerfile
+FROM node:14
+WORKDIR /app
+COPY package.json .
+RUN npm install
+COPY . .
+CMD ["node", "server.js"]
+EXPOSE 3000
+Build and push the Docker image:
+docker build -t myapp:latest .
+docker tag myapp:latest myrepo/myapp:latest
+docker push myrepo/myapp:latest
+
+Step 4: Deploying to Kubernetes (EKS)
+A Kubernetes Deployment and Service are created for our application.
+Kubernetes Deployment File
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: myapp
+spec:
+ replicas: 3
+ selector:
+ matchLabels:
+ app: myapp
+ template:
+ metadata:
+ labels:
+ app: myapp
+ spec:
+ containers:
+ - name: myapp
+ image: myrepo/myapp:latest
+ ports:
+ - containerPort: 3000
+Apply the deployment:
+kubectl apply -f deployment.yaml
+
+Step 5: Setting Up CI/CD Pipeline with Jenkins
+A Jenkins pipeline is configured to automate testing and deployment.
+Jenkinsfile
+pipeline {
+ agent any
+ stages {
+ stage('Checkout') {
+ steps {
+ git 'https://github.com/user/repo.git'
+ }
+ }
+ stage('Build') {
+ steps {
+ sh 'docker build -t myrepo/myapp:latest .'
+ }
+ }
+ stage('Push') {
+ steps {
+ sh 'docker push myrepo/myapp:latest'
+ }
+ }
+ stage('Deploy') {
+ steps {
+ sh 'kubectl apply -f deployment.yaml'
+ }
+ }
+ }
+}
+
+Step 6: Monitoring with Prometheus & Grafana
+Prometheus is used to collect metrics, and Grafana is used to visualize them.
+Prometheus Configuration (prometheus.yml)
+scrape_configs:
+ - job_name: 'kubernetes'
+ static_configs:
+ - targets: ['localhost:9090']
+Deploying Grafana
+kubectl create namespace monitoring
+kubectl apply -f https://raw.githubusercontent.com/grafana/helmcharts/main/charts/grafana/templates/deployment.yaml
+Access Grafana:
+kubectl port-forward svc/grafana 3000:3000 -n monitoring
+Login with:
+• Username: admin
+• Password: admin
+Conclusion
+This project demonstrates an end-to-end DevOps workflow using AWS, Terraform, Ansible, 
+Docker, Kubernetes, Jenkins, and monitoring tools. It enables automated deployments, 
+scalability, and performance tracking in a production-ready cloud environment.
