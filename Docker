@@ -175,3 +175,34 @@ $ docker port containername : To check port map for container
 $ docker run –it –p portrange imagename : To run container by giving port 
 without mentioning container name
 
+DOCKER VOLUMES
+Docker volume is a persistent data storage mechanism that can be used to store 
+data outside of a container's filesystem.
+2 types of docker volume
+1.Normal volume
+2. shared volume
+* container to container
+* host to container
+
+$ docker volume ls : To list docker volumes
+
+$ docker volume create volumename : To create docker volume
+
+$ docker run –it –v volumename:/mountpointname --name containername 
+imagename : To run volume as container & enter inside container
+
+Ex:$ docker run –it –v vol1: /ub --name ubun ubuntu
+$ touch f1 f2 : create some files inside container
+$ docker rm –f container : delete container but data still available on docker vol
+$cd /var/lib/docker/volumes/volumename/data :docker volumes avilable here 
+even deletion of container
+$ docker inspect containername : To see detailed about container,files created 
+inside container identified by “mount” path
+$docker run –it –volume-from containername –name newcontainername 
+imagename :use the volume from previously used volume in the container by 
+specifieng container name
+$ docker volume prune : To delete all docker volumes
+$ mkdir volume
+$ cd volume
+$ Docker run –it –v /home/contname/volname:/vol --name contname 
+imagename : To attach volume to container
