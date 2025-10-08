@@ -19,3 +19,72 @@ Public cloud:Third party provider makes resources and services available to the 
 Advantages: cost effective, reliability, unlimited storage, backup & recovery
 Third party providers: aws, GCP (google), Oracle, Microsoft Azure etc…
 
+1) What is VPC (virtual private cloud)?
+It is a virtual network dedicated to your AWS account, it logically isolates from other virtual 
+networks in the AWS cloud, and where you can launch your AWS instance.
+VPC consist of subnets, network gateway & Routing table.
+
+What is a subnet?
+Subnet is a logical subdivision of IP network. The practice of dividing a network into 2 or 
+more networks is called sub netting.
+
+2) What is Route table?
+A set of rules called routes that are used to determine where network traffic is directed.
+
+3) What is Internet gateway?
+A gateway that you attach to your VPC to enable communication between resources in your 
+VPC and the internet.
+
+4) What is NAT gateway?
+NAT Gateway is used to connect to the Internet from instances within a private subnet in the 
+VPC.
+Nat gateway will be created from Public subnet and attach to the private subnet.
+
+5) What is VPC endpoint?
+It enables you to privately connect your VPC to supported AWS services and VPC endpoint 
+services powered by private link without requiring an internet gateway, NAT device, VPN 
+connection or AWS direct connection.
+
+6) What is VPC peering connection?
+A VPC peering connection is a network connection between 2 VPC’S that enables you to 
+route traffic between them using private IPV4 or IPV6 address. 
+Instances in either VPC can communicate with each other as if they are within the same 
+network. 
+You can create a VPC peering connection between your own VPC or with a VPC in another 
+AWS account.
+
+7) Limitations of VPC peering.
+I. You cannot create a VPC peering connection between VPC’S that have matching or 
+overlapping IPV4 CIDR blocks. Amazon always assigns a unique IPV6 CIDR block.
+II. You have a quota on the number of active and pending VPC peering connections that 
+you can have per VPC.
+III. VPC peering does not support transitive peering relationships. In VPC peering 
+connection, one VPC does not have access to any other VPC with which the peer VPC 
+may be peered.
+IV. Cannot have more than 1 VPC peering connection between the same 2 VPC at the same 
+time.
+
+8) What is NACL (Network ACL)? Network Access Control Lists
+NACL are firewall at the subnet level.
+You can use a network ACL to control the traffic to and from the subnet in which NAT 
+gateway is located.
+ It is a stateless means that any changes made in the inbound rule will not reflect the 
+outbound rule, i.e., you need to add the outbound rule separately. For example, if 
+you add an inbound rule port number 80, then you also have to explicitly add the 
+outbound rule. 
+
+9) What is a security group?
+A security group acts as a virtual firewall for your instance to control inbound and outbound 
+traffic.
+When you launch an instance in a VPC, you can assign up to 5 security groups to the 
+instance.
+Security group act at instance level and not at subnet level.
+ It is a stateful means that any changes made in the inbound rule will be 
+automatically reflected in the outbound rule. For example, If you are allowing an 
+incoming port 80, then you also have to add the outbound rule explicitly.
+
+10) Difference between public subnet and private subnet
+Public Subnet – Users can access resources from the internet. Internet traffic is routed via 
+internet gateway. Applications are stored in public subnet.
+Private Subnet - Users cannot access resources from the internet. Internet traffic is routed
+via NAT gateway. Data is stored in private subnet (database, API calls, passwords)
