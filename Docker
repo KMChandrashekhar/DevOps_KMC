@@ -69,3 +69,39 @@ creating docker container
 • Docker Container: It is a Run time environment to images with updating 
 all its dependencies to run applications
 
+DOCKER COMMANDS
+$ docker version : To check detailed docker version
+$ docker –v : To check short-info docker version
+$ docker search imagename : To search image name
+Ex: docker search nginx
+$ docker pull imagename: To pull image from dockerhub
+ex docker pull nginx
+$ docker images: To list images 
+$ docker run –it - -name newcontainer imagename : To enter inside container
+Ex : docker run –it - -name mycont nginx
+ctrl+p+ctrl+q : exit container without stopping
+$ docker ps : To check runnung container
+$ docker run –it imagename: To go inside container with its random container 
+name
+Ex : docker run –it nginx, 
+ exit : after by entering inside container to exit & container stops automatically
+$ docker ps –a : To list Running and stopped container
+$ docker attach runcontainername: To go inside running container name
+$ docker stop containername: To stop running container
+$ docker kill containername :- To stop container suddenly
+$ docker rm containername: To delete stopped container
+$ docker start containername: To start container
+$ docker rmi imagename: To delete image name
+$ docker run –t –d - -name newcontainername imagename: To run the 
+container in detached mode means that without entering inside container.(if we try 
+to docker attach containername to go inside it freezed due to it runs in detached 
+mode)
+$ docker exec –it containername /bin/bash : To enter inside container of 
+detached mode
+$ docker diff containername : To see any updates or logs in the image
+ Output shows: C-changed
+ A-appended(add)
+ D-Deleted
+$ docker commit runcontainername newimagename: To create new image from 
+running container
+$ docker stop container1 container2 containeretc: To stop multiple container
