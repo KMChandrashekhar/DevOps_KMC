@@ -129,3 +129,49 @@ Create a file named Dockerfile
 Add instructions in Dockerfile
 Build dockerfile to create image
 Run image to create container
+
+EX (1)
+$ vi Dockerfile
+FROM nginx #base image
+RUN touch /tmp/custom #to run commands
+
+$ docker build –t newimagename . (#-t –tag,new image name, .-current dir) 
+: To build image from dockerfile
+
+$ docker run –it --name newcontainername imagename : After build image 
+created when we entered inside the container it directly take into directory 
+mentioned as in the working dir
+
+$ docker rm –f runcontainername : To delete running container forcefully
+
+EX(2)
+$ vi Dockerfile
+FROM ubuntu
+WORKDIR /tmp
+RUN echo “welcome to docker” > /tmp/file1
+ENV name docker
+COPY testfile /home
+ADD testfile.tar.gz/tmp
+
+$ docker build –t newimagename .
+Then go to
+
+$ cd /tmp,$ ls :files of working dir available here
+
+$ cd /home, $ ls :testfile mentioned in copy is available here
+
+$ echo $name: to excute env name
+
+$ docker run –td - -name newcontainername –p portrange imagename : To 
+run image on port,its available internet & localhost
+Ex:$ docker run –td - -name mycontainer –p 88:8080 ubuntu
+
+$ docker run –td - -name newcontainername –expose portrange imagename : 
+To expose image on internally means on docker environment not on locally
+Ex: $ docker run –td - -name mycontainer –expose 88 ubuntu
+
+$ docker port containername : To check port map for container
+
+$ docker run –it –p portrange imagename : To run container by giving port 
+without mentioning container name
+
