@@ -1,1 +1,24 @@
+DOCKER
+“To standardized way to package the application with its dependencies and deploy 
+it on any environment.”
+• Docker is a tool used to create, deploy,and run applications using containers.
+• It makes it easy to deploy and run applications in a repeatable and secure
+• Docker allows applications to run on separate machines with the same 
+operating system kernel.
+• Docker allows developers to create applications that can be quickly and 
+easily shipped to different machines with different configuration
 
+Docker is popular due to / advantages of docker
+• Low system requirements
+• Quick application portability
+• Local development environment
+• Continous integration and deployment
+• Code isolation
+• Increased efficiency
+
+The Reason could be due to application not working fine : / why docker
+• Dependencies
+• Libraries and versions
+• Framework
+• OS Level features
+• Microservices
