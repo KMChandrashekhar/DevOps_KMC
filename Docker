@@ -40,3 +40,32 @@ metadata.
 7. Delete: Final stage is deletion of container by command ‘docker rm 
 containername
 
+DOCKER ARCHITECTURE
+• Docker Daemon: *It runs on host OS & resposible for running containers to 
+manage docker service,
+ * It communicating with other daemons 
+ *It offers various docker objects such images,containers,networking&storage
+
+• Docker Client: It is a command line interface tool that allows user to 
+interact with Docker Daemon 
+ * It send commands to Docker Daemon & receives response
+
+• Docker Host: It provides environment to execute and run the application
+ * It contains docker daemon,images,containers,networks & storage
+
+• Docker Registry: It manages and stores the Docker images
+ * 2 types of Docker Registry are
+1) Public Registry: Docker hub
+2) Private Registry: Images share within enterprise
+
+• Docker Network: Docker provides build in network infrastructure that 
+allows containers to communicate with each other & with the host machine.
+ * It can be created and configured using docker command line interface 
+(CLI) or Docker compose
+
+• Docker Image: It is a read only template that contain set of instructions for 
+creating docker container
+
+• Docker Container: It is a Run time environment to images with updating 
+all its dependencies to run applications
+
