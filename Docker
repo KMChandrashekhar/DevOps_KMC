@@ -22,3 +22,21 @@ The Reason could be due to application not working fine : / why docker
 • Framework
 • OS Level features
 • Microservices
+
+DOCKER LIFE CYCLE
+“Docker goes through complete life cycle from creation to deletion state”
+1. Create: 1st stage is a creation of docker image .It can build from pull image 
+from docker registry or by writing ‘Dockerfile’
+2. Run: Running of docker container.It contains ports,volumes,environmental 
+variables
+3. Manage:After running container ,It is managed by various commands like 
+docker ps ,docker start,docker stop,docker restart,etc
+4. Update: Docker containers are updated by configuration,dependencies and 
+restarting 
+5. Backup: Docker containers are backup by creating snapshots of filesystem 
+& metadata by the tools are docker volume and docker images
+6. Restore:Docker containers are restored by images or container filesystem & 
+metadata.
+7. Delete: Final stage is deletion of container by command ‘docker rm 
+containername
+
