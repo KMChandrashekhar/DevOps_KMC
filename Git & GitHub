@@ -115,6 +115,18 @@ branches (like origin/main) but doesn’t merge them.
 git pull does fetch + merge, updating your current branch
 automatically.
 
+Q13. What is git stash?
+Answer:
+git stash temporarily saves uncommitted changes and resets your working
+directory.
+Example: You are mid-feature but must switch to main to fix a bug. Run git
+stash, switch branch, fix and commit the bug, then return and restore with
+git stash pop.
+📌 Section 4: Staging & Workflow
+Q14. What is git add and why do we need it?
+Answer: git add stages changes from the working directory to the
+staging area. Git uses a 3-stage system: Working Directory → Staging
+Area → Repository.
 
 
 
