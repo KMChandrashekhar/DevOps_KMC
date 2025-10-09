@@ -208,3 +208,21 @@ Q29. What is GitHub Actions?
 Answer: GitHub Actions is a CI/CD automation tool inside GitHub. It
 allows workflows like build, test, and deployment triggered on events
 (push, PR, etc.).
+
+Q30. What is GitHub Flow vs Git Flow?
+Answer:
+GitHub Flow → Simple strategy: create branch → PR → merge into
+main.
+Git Flow → Structured: uses main, develop, feature, release, hotfix
+branches.
+💡 Pro Tip: Mention GitHub Flow for startups, Git Flow for
+enterprise projects.
+
+Q31. How do you handle large files in GitHub?
+Answer: By using Git LFS (Large File Storage), which stores large
+binaries outside normal Git history.
+
+Q32. What is the dierence between main and origin/main?
+Answer:
+main → Local branch.
+origin/main → Remote-tracking branch (state of remote main).
