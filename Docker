@@ -298,3 +298,37 @@ $ docker-compose stop
 $ docker-compose start
 $ docker-compose down
 
+DOCKER HUB
+Docker Hub is a cloud-based registry service that allows you to store and manage 
+Docker images. It provides a centralized location for developers to share and 
+distribute their Docker images, making it easier to collaborate on projects and 
+distribute software.
+Login docker hub 
+Goto hub.docker.com
+Sign up using name ,email & paswd
+Two types of docker hub
+1.public repository
+2.private repository
+(1)Push and (2)pull image from docker hub
+Open CLI
+(1)
+$ docker login
+$ docker run –it –name mycont imagename
+$ vi /etc/hostname : To change host name
+$ exit
+$ docker ps –a
+$docker commit runcontainer newimagename
+Ex: $docker commit mycont myubuntu 
+$ docker tag imagename dockerid/reponame
+Ex: $docker tag myubuntu raa/myimage
+$ docker push tagedimagename
+Ex: $docker push raa/myimage
+(2)
+$ docker pull imagename : pull image from dockerhub
+$docker pull raa/myimage
+$ docker stop $(docker ps –a -q): To stop all container
+$ docker rm -f $(docker ps –a -q):To delete all container
+$ docker images prune –a :To delete all images
+$ docker system prune –a : To delete stopped container,network not used by 
+atleast one container,images not used by one container,build cache 
+$ docker status containername: To see details about container
