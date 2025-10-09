@@ -178,4 +178,19 @@ Answer: A PR is a request to merge code into another branch on
 GitHub. It allows code review, discussion, and approval before
 merging.
 
+📌 Section 6: Tags & Releases
+Q24. What is a Git tag?
+Answer: A tag is a label pointing to a specific commit, often used for
+releases (v1.0.0).
+
+Q25. Dierence between lightweight and annotated tags?
+Answer:
+Lightweight → Simple pointer.
+Annotated → Stores metadata like tagger, date, and message
+(preferred for releases).
+
+Q26. How do you create and push a tag?
+Answer:
+git tag -a v1.0.0 -m "First release"
+git push origin v1.0.0
 
