@@ -1,1 +1,14 @@
+Q1. What is Git?
+Answer: Git is a distributed version control system (DVCS) that helps
+track code changes, collaborate with teams, roll back to older
+versions, and manage branching/merging.
+💡 Pro Tip: Always mention "distributed" — it highlights Git’s oline
+capability.
+
+Q2. What is GitHub?
+Answer: GitHub is a cloud platform to host Git repositories and
+collaborate using Pull Requests, Issues, Actions (CI/CD), and project
+boards.
+💡 Pro Tip: Say Git = tool, GitHub = platform.
+
 
