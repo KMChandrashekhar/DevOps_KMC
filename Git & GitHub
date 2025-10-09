@@ -150,5 +150,14 @@ checkout → Switches branches or restores files.
 💡 Pro Tip: Say “I prefer revert in teams because it preserves
 history.”
 
+📌 Section 5: Remote Operations
+Q19. What is the dierence between git pull and git fetch?
+Answer:
+fetch → Downloads changes into remote-tracking branch
+(origin/main) but doesn’t merge.
+pull → Fetch + Merge into local branch.
 
+Q20. What is a remote in Git?
+Answer: A remote is a reference to a hosted repository (usually on
+GitHub). Default name = origin.
 
