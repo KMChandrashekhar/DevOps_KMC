@@ -28,3 +28,25 @@ git fetch → Only download changes (no merge)
 💡 Pro Tip: In interviews, mention git commit -am "msg" as a shortcut
 for tracked files.
 
+Q4. Dierence between Git and GitHub?
+Answer:
+Git → Local VCS tool that manages versions of code.
+GitHub → Cloud hosting service that extends Git with collaboration
+features.
+Interview Edge: Mention alternatives like GitLab, Bitbucket.
+
+Q5. What is a repository?
+Answer: A repository is a project directory managed by Git,
+containing code, commit history, and branches.
+Local repository → Exists on your machine (git init).
+Remote repository → Hosted on GitHub for team collaboration.
+💡 Pro Tip: Interviewers like when you highlight the dierence
+between local and remote repos.
+
+Q6. What is a commit?
+Answer: A commit is a snapshot of code at a point in time, identified
+by a unique SHA hash, author, timestamp, and commit message.
+💡 Pro Tip: A clear commit message helps track why a change was
+made.
+
+
