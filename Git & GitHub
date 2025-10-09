@@ -128,5 +128,27 @@ Answer: git add stages changes from the working directory to the
 staging area. Git uses a 3-stage system: Working Directory → Staging
 Area → Repository.
 
+Q15. Do we always need git add . before commit?
+Answer: No. For tracked files, you can commit directly with git
+commit -am "msg". But for new/untracked files, git add is mandatory.
+
+Q16. What is git stash and when is it useful?
+Answer: git stash temporarily saves uncommitted work and clears the
+working directory.
+Example: In the middle of a feature, you need to switch to main to fix
+a bug → run git stash, later use git stash pop to restore.
+
+Q17. What is .gitignore?
+Answer: A file that lists files/folders Git should ignore (e.g., logs, build
+files, environment secrets).
+
+Q18. Dierence between git reset, git revert, and git checkout?
+Answer:
+reset → Moves HEAD pointer back, possibly deleting commits.
+revert → Safely creates a new commit that undoes changes.
+checkout → Switches branches or restores files.
+💡 Pro Tip: Say “I prefer revert in teams because it preserves
+history.”
+
 
 
