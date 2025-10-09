@@ -97,5 +97,24 @@ git init → Initialize a new Git repository
 git clone <url> → Copy repository from remote to local
 git status → Show modified/untracked files
 git add . → Stage all changes
+git commit -m "msg" → Save a snapshot with a message
+git log --oneline → Show commit history in short form
+git branch → List branches
+git checkout -b <branch> → Create + switch to a new branch
+git merge <branch> → Merge branch into current
+git push origin main → Push local commits to GitHub
+git pull → Fetch + merge changes from remote
+git fetch → Only download changes (no merge)
+💡 Pro Tip: In interviews, mention git commit -am "msg" as a shortcut
+for tracked files.
+
+Q12. What is the dierence between git pull and git fetch?
+Answer:
+git fetch downloads commits from remote into remote-tracking
+branches (like origin/main) but doesn’t merge them.
+git pull does fetch + merge, updating your current branch
+automatically.
+
+
 
 
