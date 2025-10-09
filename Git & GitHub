@@ -123,6 +123,7 @@ Example: You are mid-feature but must switch to main to fix a bug. Run git
 stash, switch branch, fix and commit the bug, then return and restore with
 git stash pop.
 📌 Section 4: Staging & Workflow
+
 Q14. What is git add and why do we need it?
 Answer: git add stages changes from the working directory to the
 staging area. Git uses a 3-stage system: Working Directory → Staging
@@ -226,3 +227,13 @@ Q32. What is the dierence between main and origin/main?
 Answer:
 main → Local branch.
 origin/main → Remote-tracking branch (state of remote main).
+
+Q33. Best practices with Git in teams?
+Answer:
+Write clear commit messages.
+Use branches for new features.
+Keep main protected.
+Resolve merge conflicts early.
+Use PRs for review.
+💡 Pro Tip: Add “We also use GitHub Actions for CI/CD” to show
+awareness of modern workflows.
