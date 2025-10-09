@@ -49,4 +49,16 @@ by a unique SHA hash, author, timestamp, and commit message.
 💡 Pro Tip: A clear commit message helps track why a change was
 made.
 
+📌 Section 2: Branching & Merging
+Q7. What is a branch?
+Answer: A branch is a parallel line of development. It allows
+developers to build features without aecting the main branch.
+💡 Pro Tip: Mention how feature branches prevent breaking
+production code.
+Q8. What is a merge conflict? How do you resolve it?
+Answer: A merge conflict happens when two branches modify the
+same code section. Git cannot decide which change to keep.
+Steps:
+Open file and check conflict markers.
+Decide correct changes (or combine).
 
