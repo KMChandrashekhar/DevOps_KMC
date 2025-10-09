@@ -206,3 +206,30 @@ $ mkdir volume
 $ cd volume
 $ Docker run –it –v /home/contname/volname:/vol --name contname 
 imagename : To attach volume to container
+
+DOCKER NETWORK
+Docker provides build in network infrastructure that allows containers to 
+communicate with each other & with the host machine
+Three types of networks are 
+1.Bridge
+2.Host
+3.None
+$ docker netwok ls : To list docker networks
+$ docker run –it imagename : To run container
+$ ping google.com : To ensure that ip is up and running or not
+$ docker inspect bridge : To see details about bridge network
+$ docker network create --driver bridge mynetwork :To create custom bridge 
+network
+$ docker run –it --network mynetwork --name containername imagename :To 
+create container on network
+$ docker network connect mynetwork container : To connect container with 
+network
+$ docker inspect mynet : To inspect network ,which are the containers connected 
+to it
+$ docker inspect bridge:To inspect bridge network
+$ docker attach container
+$ ping container
+Ex:$ docker run –it --network host --name web nginx : To create docker 
+network on local host
+
+
