@@ -161,3 +161,21 @@ Q20. What is a remote in Git?
 Answer: A remote is a reference to a hosted repository (usually on
 GitHub). Default name = origin.
 
+Q21. How do you push a branch to GitHub?
+Answer:
+git push origin branch-name
+For first time:
+git push -u origin branch-name
+(-u sets upstream tracking for future pushes).
+
+Q22. What is the dierence between fork and clone?
+Answer:
+Fork → Copies repository to your GitHub account.
+Clone → Copies repository to your local machine.
+
+Q23. What is a Pull Request (PR)?
+Answer: A PR is a request to merge code into another branch on
+GitHub. It allows code review, discussion, and approval before
+merging.
+
+
