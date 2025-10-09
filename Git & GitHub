@@ -194,3 +194,17 @@ Answer:
 git tag -a v1.0.0 -m "First release"
 git push origin v1.0.0
 
+Q27. How do you delete a tag?
+Answer:
+Local: git tag -d v1.0.0
+Remote: git push --delete origin v1.0.0
+
+Q28. How to see commits between two tags?
+Answer:
+git log v1.0.0..v2.0.0 --oneline
+📌 Section 7: Advanced & Best Practices
+
+Q29. What is GitHub Actions?
+Answer: GitHub Actions is a CI/CD automation tool inside GitHub. It
+allows workflows like build, test, and deployment triggered on events
+(push, PR, etc.).
