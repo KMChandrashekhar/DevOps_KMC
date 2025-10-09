@@ -50,15 +50,52 @@ by a unique SHA hash, author, timestamp, and commit message.
 made.
 
 📌 Section 2: Branching & Merging
+
 Q7. What is a branch?
 Answer: A branch is a parallel line of development. It allows
 developers to build features without aecting the main branch.
 💡 Pro Tip: Mention how feature branches prevent breaking
 production code.
+
 Q8. What is a merge conflict? How do you resolve it?
 Answer: A merge conflict happens when two branches modify the
 same code section. Git cannot decide which change to keep.
 Steps:
 Open file and check conflict markers.
 Decide correct changes (or combine).
+
+3. Save → git add → git commit.
+💡 Pro Tip: Mention that handling conflicts quickly is vital in team
+projects.
+
+Q9. Dierence between git merge and git rebase?
+Answer:
+Merge → Combines histories, keeps non-linear commits.
+Rebase → Replays commits on another branch, making history
+linear.
+💡 Pro Tip: Teams often use merge for collaboration, and rebase
+for personal branches.
+
+Q10. What is a fast-forward merge?
+Answer: A fast-forward merge occurs when no new commits exist on
+the target branch, so Git simply moves the branch pointer ahead
+without creating a merge commit.
+💡 Pro Tip: Fast-forward keeps history simple, but doesn’t show that a
+branch existed.
+
+Q11. What is a detached HEAD?
+Answer: Detached HEAD occurs when Git points directly to a commit
+instead of a branch.
+Commits made here won’t belong to any branch unless you create
+one.
+💡 Pro Tip: Used for experiments or reviewing older commits.
+
+📌 Section 3: Commands
+Q11. Common Git commands?
+Answer:
+git init → Initialize a new Git repository
+git clone <url> → Copy repository from remote to local
+git status → Show modified/untracked files
+git add . → Stage all changes
+
 
