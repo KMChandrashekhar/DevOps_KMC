@@ -232,4 +232,69 @@ $ ping container
 Ex:$ docker run –it --network host --name web nginx : To create docker 
 network on local host
 
+DOCKER COMPOSE
+Docker Compose is a tool that allows you to define and run multi-container 
+Docker applications. It provides a way to define the services that make up an 
+application in a YAML file, and then start and stop those services using a single 
+command.
+$ apt install docker compose : To install docker compose
+Ex-1
+$ vi docker-compose.yml
+---
+Services:
+tomcat:
+ image:tomee
+ ports:
+ - “888:8080”
+ network_mode: bridge
+$ docker-compose up –d : To run image by yamal file as container
+$ docker-compose stop : To stop docker-compose container
+$ docker-compose start : to start container again
+$ docker-compose down : to delete container
+(yamal lint web page helpful for checking syntax of yaml file)
+$ vi docker-compose.yml
+---
+Networks:
+ Mynet:
+ Driver: bridge
+services :
+ c1:
+ Container_name: c1
+ Image: centos
+ Networks:
+ - mynet
+ Tty: true
+ Volumes:
+ - “voll:/volume1”
+ c2:
+ Container_name: c2
+ Image: centos
+ Networks:
+ - mynet
+ Tty: true
+ Volumes:
+ - “voll:/volume2”
+ c3:
+ Container_name: c3
+ Image: centos
+ Network_mode: bridge
+ Tty: true
+Version: “3.9”
+Volumes:
+ Vol1: 
+ Name: - Vol1
+ 
+$ sudo su
+$ docker-compose up –d
+$ docker ps
+$ docker inspect c3
+$ docketr inspect c1
+$docker volumel
+$ docker volume ls
+$ docker network ls 
+$ docker exec –it c1 /bin/bash
+$ docker exec –it c2 /bin/bash
+$ docker-compose stop
+$ docker-compose start
+$ docker-compose down
 
