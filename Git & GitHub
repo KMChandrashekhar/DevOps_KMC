@@ -11,4 +11,20 @@ collaborate using Pull Requests, Issues, Actions (CI/CD), and project
 boards.
 💡 Pro Tip: Say Git = tool, GitHub = platform.
 
+Q3. Common Git commands?
+Answer:
+git init → Initialize a new Git repository
+git clone <url> → Copy repository from remote to local
+git status → Show modified/untracked files
+git add . → Stage all changes
+git commit -m "msg" → Save a snapshot with a message
+git log --oneline → Show commit history in short form
+git branch → List branches
+git checkout -b <branch> → Create + switch to a new branch
+git merge <branch> → Merge branch into current
+git push origin main → Push local commits to GitHub
+git pull → Fetch + merge changes from remote
+git fetch → Only download changes (no merge)
+💡 Pro Tip: In interviews, mention git commit -am "msg" as a shortcut
+for tracked files.
 
