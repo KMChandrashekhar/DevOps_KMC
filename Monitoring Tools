@@ -71,4 +71,14 @@ It runs on each server (node) you want to monitor and provides important data li
 • System uptime
 Prometheus then pulls this data from Node Exporter and stores it for analysis or altering
 
+How Node Exporter Works ?
+You install Node Exporter on a Linux server. 1.
+It starts running and exposes data at:
+http://<server-ip>:9100/metrics
+2. Prometheus accesses this URL to collect metrics regularly.
+3. You can visualize the data in Grafana as graphs, gauges, and charts.
+Install Prometheus on EC2 Instance
+1. Lunch an Amazon Linux EC2 Instance
+
+
 
