@@ -217,4 +217,15 @@ Click the Panel Title → Edit Choose visualization type:
 Configure legends, units, colors, and thresholds
 
 a. node_cpu_seconds_total
+b. node_memory_MemAvailable_bytes
+
+Save the Dashboard
+• Click Save icon
+• Enter a name for your dashboard
+• Click Save
+
+Add More Panels (Optional)
+• Click Add panel to include additional metrics Repeat the above steps for
+each panel.
+
 
