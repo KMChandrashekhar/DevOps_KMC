@@ -104,5 +104,8 @@ Then:
 
 3. add port 9090 for Prometheus and port 9100 for Node Exporter in security group
 
+4. copy ec2 public IP and paste in browser with port no 9090 now you should see
+Prometheus dashboard.
+To see Node Exporter copy ec2 public IP and paste in browser with port no 9100
 
 
