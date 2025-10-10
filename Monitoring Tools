@@ -53,4 +53,22 @@ what's the CPU usage now?"
 4. You can see or analyze this data using its own web page or by connecting it to a
 tool like Grafana for beautiful dashboards.
 
+How Grafana works ?
+1. Grafana connects to Prometheus (or other data sources)
+2. It reads the monitoring data (like CPU usage, memory, etc.)
+3. You can use Grafana to create dashboards and display that data in graphs
+4. You can also set alerts, so Grafana notifies you if something is wrong.
+
+What is Node Exporter?
+Node Exporter is a small tool used with Prometheus to collect hardware and system
+metrics from your Linux server.
+
+It runs on each server (node) you want to monitor and provides important data like:
+• CPU usage
+• Memory usage
+• Disk space
+• Network traffic
+• System uptime
+Prometheus then pulls this data from Node Exporter and stores it for analysis or
+
 
