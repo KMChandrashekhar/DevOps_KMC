@@ -35,3 +35,22 @@ raw numbers, Grafana helps you see graphs, charts, and alerts which makes it
 easier to understand what’s happening in your system.
 Grafana is like a dashboard in a car it shows you everything about your system in
 one place, in a way that's easy to see and understand.
+
+Why Use Prometheus + Grafana?
+When you use Prometheus and Grafana together, you get a powerful and easy way
+to monitor your system.
+• Prometheus collects data like CPU usage, memory, disk space, and more.
+• Grafana shows that data using beautiful graphs and charts.
+In short Prometheus watches your system. Grafana shows you what’s happening
+clearly and beautifully. Together, they make system monitoring easy and smart.
+
+How Prometheus works ?
+1. Prometheus asks other tools (called exporters) for system data — like "Hey,
+what's the CPU usage now?"
+2. Exporters give the data (like CPU: 30%, Memory: 40%).
+3. Prometheus stores this data with the time it was collected (this is called
+"timeseries data").
+4. You can see or analyze this data using its own web page or by connecting it to a
+tool like Grafana for beautiful dashboards.
+
+
