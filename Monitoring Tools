@@ -1,1 +1,16 @@
-
+Table of Contents
+1. What is Monitoring
+2. What is Prometheus
+3. What is Grafana
+4. Why Use Prometheus + Grafana
+5. How Prometheus Works
+6. How Grafana Works
+7. What is Node Exporter
+8. How Node Exporter Works
+9. Installing Prometheus on EC2
+10. Configuring Prometheus
+11.Alertmanager Overview
+12. Installing Grafana on EC2
+13.Adding Prometheus as a Data Source
+14. What is a Dashboard
+15. Creating Dashboards in Grafana.
