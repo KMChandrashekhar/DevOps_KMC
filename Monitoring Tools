@@ -176,3 +176,10 @@ sources like:
 • Prometheus (for metrics)
 • MySQL/PostgreSQL (for databases)
 • Elasticsearch
+CloudWatch
+• And many others
+Once a data source is connected, Grafana can fetch data, visualize it, and build
+dashboards in real time
+
+How to add Data Source ?
+1. Navigate to Data Sources click “Add data source”
