@@ -170,3 +170,9 @@ Grafana dashboard
 3. login with default username and password which is admin admin
 4. You’ll be prompted to set a new password on first login.
 
+Data Source in Grafana
+Grafana doesn't store data itself — it connects to external systems called data
+sources like:
+• Prometheus (for metrics)
+• MySQL/PostgreSQL (for databases)
+• Elasticsearch
