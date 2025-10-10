@@ -207,3 +207,14 @@ In the metrics browser, start typing metric names like:
 • Click Run Query
 • A graph will appear with live data
 
+Customize the Visualization
+
+Click the Panel Title → Edit Choose visualization type:
+• Graph
+• Gauge
+• Table
+• Pie Chart, etc.
+Configure legends, units, colors, and thresholds
+
+a. node_cpu_seconds_total
+
