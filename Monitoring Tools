@@ -126,4 +126,17 @@ scrape_configs:
 job_name: A label to identify this exporter
 targets: Where the exporter is running (IP:port)
 
+3. Restart Prometheus
+After editing the config file, restart Prometheus to apply changes:
+sudo systemctl restart prometheus
+
+4. Open your browser and go to: http://<your-server-ip>:9090
+In the Prometheus dashboard, go to the "Targets" page to confirm that
+node_exporter is active. Click on the "Graph" tab:
+• Type any metric starting with node_ (e.g., node_cpu_seconds_total)
+• Click "Execute"
+• You'll see live metric data
+
+
+
 
