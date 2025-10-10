@@ -162,4 +162,9 @@ Then:
 sudo yum install grafana -y sudo
 systemctl start grafana-server sudo
 
+systemctl enable grafana-server After
+Installation:
+1. add port 3000 in security group of EC2 (Grafana runs on port no 3000).
+2. copy ec2 public IP and paste in browser with port no 3000 now you should see
+Grafana dashboard
 
