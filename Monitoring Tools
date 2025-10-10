@@ -77,8 +77,32 @@ It starts running and exposes data at:
 http://<server-ip>:9100/metrics
 2. Prometheus accesses this URL to collect metrics regularly.
 3. You can visualize the data in Grafana as graphs, gauges, and charts.
+
 Install Prometheus on EC2 Instance
 1. Lunch an Amazon Linux EC2 Instance
+
+2. Execute the below commands to install the Prometheus
+- copy these all lines and execute as one command
+-
+sudo tee /etc/yum.repos.d/prometheus.repo <<EOF
+[prometheus] name=Prometheus
+baseurl=https://packagecloud.io/prometheus-rpm/release/el/7/x86_64
+repo_gpgcheck=1 enabled=1
+gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
+
+https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-
+GPGKEY-prometheus-rpm gpgcheck=1 metadata_expire=300
+
+EOF
+
+Then:
+- sudo yum update -y
+- sudo yum -y install prometheus2 node_exporter
+- rpm -qi prometheus2
+- sudo systemctl start prometheus node_exporter
+- sudo systemctl status prometheus.service node_exporter.service
+
+3. add port 9090 for Prometheus and port 9100 for Node Exporter in security group
 
 
 
