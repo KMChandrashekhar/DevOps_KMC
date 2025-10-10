@@ -189,3 +189,21 @@ In the URL field, enter:
 • If Prometheus is on the same server: http://localhost:9090
 • If Prometheus is on a different server, use:
 
+4. Leave the other settings as default click “Save & Test”
+You should see a green message: “Data source is working”
+
+What is a Dashboard?
+A dashboard in Grafana is a collection of panels that display different types of
+monitoring data like CPU usage, memory, disk I/O, network traffic, etc., in real-time
+using graphs, charts, gauges, and tables.
+Dashboards make it easy to understand system performance at a glance. Instead
+of reading raw numbers, you can view the health of your servers, applications, or
+infrastructure visually.
+
+Start Creating Dashboards
+Once Prometheus is connected: Go to the “+” icon on the left click “Dashboard” →
+then “Add new panel”. Choose Prometheus as the data source
+In the metrics browser, start typing metric names like:
+• Click Run Query
+• A graph will appear with live data
+
