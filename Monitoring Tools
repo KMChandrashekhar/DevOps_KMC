@@ -108,4 +108,22 @@ Then:
 Prometheus dashboard.
 To see Node Exporter copy ec2 public IP and paste in browser with port no 9100
 
+How to Configure Prometheus ?
+After installing Prometheus, the most important step is configuring what to monitor —
+this is done in the prometheus.yml file.
+Exporters like Node Exporter, Blackbox Exporter, etc., expose system or service
+metrics. You tell Prometheus where to find them using scrape_configs.
+
+Example: Adding Node Exporter 1.
+Open the Prometheus config file:
+sudo nano /etc/prometheus/prometheus.yml
+
+2. Add the following lines to the scrape_configs section:
+scrape_configs:
+- job_name: 'node_exporter' static_configs:
+- targets: ['localhost:9100']
+
+job_name: A label to identify this exporter
+targets: Where the exporter is running (IP:port)
+
 
