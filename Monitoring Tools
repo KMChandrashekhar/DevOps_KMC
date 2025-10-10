@@ -137,6 +137,29 @@ node_exporter is active. Click on the "Graph" tab:
 • Click "Execute"
 • You'll see live metric data
 
+What is Alert manager in Prometheus ?
+Alertmanager is a tool that works with Prometheus to manage and send alerts.
+Prometheus detects problems, but Alertmanager is the one that sends notifications to
+you (via Email, Slack, Teams, etc.).
 
+#Detailed setup of Alertmanager is out of scope for this document, but can be explored when
+implementing advanced alerting.
+
+Install Grafana on EC2 Instance
+Install Grafana using the official repository
+
+1. Execute the below commands to install the Prometheus -
+copy these all lines and execute as one command
+sudo tee /etc/yum.repos.d/grafana.repo<<EOF
+[grafana] name=Grafana
+OSS
+baseurl=https://packages.grafana.com/oss/rpm
+repo_gpgcheck=1
+enabled=1 gpgcheck=1
+gpgkey=https://packages.grafana.com/gpg.key EOF
+
+Then:
+sudo yum install grafana -y sudo
+systemctl start grafana-server sudo
 
 
