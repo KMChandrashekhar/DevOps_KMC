@@ -14,3 +14,24 @@ Table of Contents
 13.Adding Prometheus as a Data Source
 14. What is a Dashboard
 15. Creating Dashboards in Grafana.
+
+What is Monitoring?
+Monitoring is the continuous process of collecting, analyzing, and visualizing system
+and application metrics to understand the performance, availability, and overall
+health of your infrastructure.
+
+What is Prometheus?
+Prometheus is a free and open-source tool used to monitor computers, servers,
+applications, and cloud systems. It helps you collect and store data about how your
+system is working like CPU usage, memory, disk space, and more and shows you
+that data in a way that's easy to understand.
+Prometheus is like a smart assistant that keeps checking how your systems are
+doing and tells you when something needs your attention.
+
+What is Grafana ?
+Grafana is a free and open-source tool used to create beautiful dashboards and
+visualize monitoring data collected from tools like Prometheus. Instead of looking at
+raw numbers, Grafana helps you see graphs, charts, and alerts which makes it
+easier to understand what’s happening in your system.
+Grafana is like a dashboard in a car it shows you everything about your system in
+one place, in a way that's easy to see and understand.
