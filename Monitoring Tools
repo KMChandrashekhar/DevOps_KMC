@@ -69,6 +69,6 @@ It runs on each server (node) you want to monitor and provides important data li
 • Disk space
 • Network traffic
 • System uptime
-Prometheus then pulls this data from Node Exporter and stores it for analysis or
+Prometheus then pulls this data from Node Exporter and stores it for analysis or altering
 
 
