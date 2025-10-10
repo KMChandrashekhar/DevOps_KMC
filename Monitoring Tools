@@ -183,3 +183,9 @@ dashboards in real time
 
 How to add Data Source ?
 1. Navigate to Data Sources click “Add data source”
+2. Select Prometheus from the list
+3. Configure Prometheus Settings
+In the URL field, enter:
+• If Prometheus is on the same server: http://localhost:9090
+• If Prometheus is on a different server, use:
+
