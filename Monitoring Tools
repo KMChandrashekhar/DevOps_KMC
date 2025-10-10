@@ -167,4 +167,6 @@ Installation:
 1. add port 3000 in security group of EC2 (Grafana runs on port no 3000).
 2. copy ec2 public IP and paste in browser with port no 3000 now you should see
 Grafana dashboard
+3. login with default username and password which is admin admin
+4. You’ll be prompted to set a new password on first login.
 
