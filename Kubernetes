@@ -1,1 +1,31 @@
 
+--------------------------------------------------------------------------------------------------------------
+Kubernetes
+--------------------------------------------------------------------------------------------------------------
+09-10-25 - class 1
+--------------------------------------------------------------------------------------------------------------
+Installation
+
+K8S Master - t2.medium
+K8S Workers - t2.micro
+
+kubeadm token create --print-join-command --> To create a new join command
+
+kubectl get nodes --> To list all the nodes of the cluster
+--------------------------------------------------------------------------------------------------------------
+Pod Definition/Manifest File:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  -  name: nginx-container
+     image: nginx
+     ports:
+     - containerPort: 80
+--------------------------------------------------------------------------------------------------------------
+Commands:
