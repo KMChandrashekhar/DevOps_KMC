@@ -197,5 +197,30 @@ Typical Use Cases of DaemonSet:
 3. Security Threat Monitoring: Falco
 --------------------------------------------------------------------------------------------------------------
 
+Labels : Labels are key value pairs used for grouping and selecting Kubernetes objects.
 
+Selectors : Selectors are used to identify the Kubernetes objects using their labels.
+      
+types of selectors
+
+1. Equity Based Selectors: these are used to identify objects by key and an exact value. operators are used here equal to, not equal to | = != ==
+
+2. set based selectors: these are used to identify the Kubernetes objects by keys based on the set of values, operators are used In, NotIn, Exists
+
+3. Spec : This section is used to define the configuration of the kubernetes object
+
+
+1. Replicaset/ReplicationController: Replica set or replicationa controller are used to ensure the specified number of identical PODs are always running in cluster to achieve load balancing and high availability. if any pod goes down or is deleted manually this controller immediately creates a new pod to replica set.
+
+Difference between replica set and replicationcontroller : Both replica set and replication controller are used to create multiple identical replicas of PODs however replica set is the new and most advanced version while the replication controller is older and now is deprecated.
+
+Replication controller also only supports equity based while the replica sets supports both equity based and set based. 
+
+2. Deployment Controller: This controller is the most common object in kubernetes used for deploying and managing application workloads.deployment controller works as a higher layer that manages PODs through replica Sets. the main purpose of a deployment controller is to manage the creation scaling and rolling updates of the PODs without breaking the user experience.
+
+3. Daemonset : This controller in kubernetes ensures that a specific PODs runs on every node in cluster, if a new node is added to the cluster the daemon set automatiocally adds a POD to the new node similarly when nodes are removed from the cluster the PODs are also cleaned up automatically. 
+
+Use Cases: Monitoring Exporters like Prometeous, Node Exporter
+ Log Collection agents : logstash, FluentD
+ security threat monitroing 
 
