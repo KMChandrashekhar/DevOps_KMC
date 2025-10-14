@@ -163,6 +163,39 @@ kubectl rollout history deploy <deployment-name> --> To check the history of the
 
 kubectl rollout undo deploy <deployment-name> --> To rollback to one previous version
 kubectl rollout undo deploy <deployment-name> --to-revision=<revision-number> --> To rollback to a particular revision
+--------------------------------------------------------------------------------------------------------------------------
+3. DaemonSet
+
+Manifest:
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-ds
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels: 
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80
+
+Typical Use Cases of DaemonSet:
+
+1. Monitoring Exporters: Prometheus, Node Exporter
+2. Log Collection Agents: Logstash, Fluentd
+3. Security Threat Monitoring: Falco
+--------------------------------------------------------------------------------------------------------------
 
 
 
