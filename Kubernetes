@@ -90,4 +90,41 @@ app exists
 
 6. Spec:
 --------------------------------------------------------------------------------------------------------------
+Controller Types:
+
+1. ReplicaSet/ReplicationController:
+
+Difference Between ReplicaSet and ReplicationController:
+
+
+Manifest:
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-repset
+  labels:
+    app: nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels: 
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80
+
+Commands:
+
+kubectl scale replicaset <replicaset-name> --replicas <number-of-pods> --> To scale the pods of replica set
+
+kubectl edit <object-kind> <object-name> --> To edit an existing kubernetes object
 
