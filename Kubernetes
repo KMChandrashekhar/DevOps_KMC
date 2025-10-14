@@ -40,4 +40,54 @@ kubectl delete <object-kind> <object-name> --> To delete a kubernetes resource
 
 kubectl describe <object-kind> <object-name> --> To see more information about a kubernetes resource
 --------------------------------------------------------------------------------------------------------------
+Manifest File Fields:
+
+1. apiVersion:
+
+Ex: v1, apps/v1, storage.k8s.io/v1
+
+kubectl api-versions --> To list all the api-versions in Kubernetes
+
+2. kind:
+
+Ex: Pod, Deployment, Service, ClusterRole etc
+
+kubectl api-resources --> To list all the resources/objects that can be created in Kubernetes
+
+3. metadata:
+
+4. labels:
+
+Ex:
+
+labels:
+  app: nginx
+  type: lb
+
+5. selectors:
+
+Types of Selectors:
+
+a. Equity Based Selectors
+
+Operators Used here: =, !=, ==
+
+Commands:
+
+kubectl get pods -l app=nginx
+kubectl get pods -l app!=nginx
+
+b. Set Based Selectors
+
+Operators Used: In, NotIn, Exists
+
+Example:
+
+app in (nginx)
+app in (nginx,proxy)
+app notin (nginx)
+app exists
+
+6. Spec:
+--------------------------------------------------------------------------------------------------------------
 
