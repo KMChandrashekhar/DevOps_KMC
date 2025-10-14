@@ -29,3 +29,15 @@ spec:
      - containerPort: 80
 --------------------------------------------------------------------------------------------------------------
 Commands:
+kubectl run <pod-name> --image <image> --> To create a pod with CLI
+
+kubectl apply -f <manifest-path>.yaml --> To apply a kubernetes manifest
+
+kubectl get pods --> To list the pods
+kubectl get pods -o wide --> To list the pods with more information
+
+kubectl delete <object-kind> <object-name> --> To delete a kubernetes resource
+
+kubectl describe <object-kind> <object-name> --> To see more information about a kubernetes resource
+--------------------------------------------------------------------------------------------------------------
+
