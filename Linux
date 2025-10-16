@@ -1,1 +1,28 @@
+--------------------------------------------------------------------------------------------------------------
+Linux
+--------------------------------------------------------------------------------------------------------------
+14-05-25 - class 1
+--------------------------------------------------------------------------------------------------------------
+Linux Commands
 
+Creating Files and Directories
+
+touch <file-name> --> TO create a file
+mkdir <directory-name> --> To create a directory
+--------------------------------------------------------------------------------------------------------------
+Listing Files and Directories
+
+ls --> To list all the files and directories in the present working directory
+ls -l --> To list all files and directories in long format
+ls -lt --> To sort the files and directories by their modified time
+ls -lrt --> TO sort by modified time in reverse order
+--------------------------------------------------------------------------------------------------------------
+The check the current Directory
+
+pwd --> Print Working Directory
+--------------------------------------------------------------------------------------------------------------
+Change Directory
+
+cd <directory-name> --> To change or get inside a directory
+cd .. --> To go back to one previous directory
+cd --> To goto home path [/home/ec2-user]
