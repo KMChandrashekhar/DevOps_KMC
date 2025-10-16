@@ -93,3 +93,61 @@ esc + :4,$d --> To delete from line 4 to end of the file
 esc + :undo --> To undo the changes
 esc + :redo --> To redo the changes
 --------------------------------------------------------------------------------------------------------------
+Assignmet:
+Search for a command to display the contents of the file in reverse order 
+--------------------------------------------------------------------------------------------------------------
+Head - Used to print the required number of lines from the begining of the file
+
+head -<n> <file-name> --> To print n number of lines from the begining of the file
+head -4 <file-name> --> To print the first 4 lines of the file
+head <file-name> --> To print the first 10 lines of the file 
+--------------------------------------------------------------------------------------------------------------
+Tail - Used to print the required number of lines from the end of the file
+
+tail -<n> <file-name> --> To print n number of lines from the end of the file
+tail -4 <file-name> --> To print the last 4 lines of the file
+tail <file-name> --> To print the last 10 lines of the file
+--------------------------------------------------------------------------------------------------------------
+Less - Used to view contents of the files interactively
+
+less <file-name> --> View contents of the file
+
+f - To go one page forward
+b - To go one page backward
+q - Quit from less command
+
+/<string> --> To search for a string
+
+less -N <file-name> --> To view the contents of the file with reference numbers
+--------------------------------------------------------------------------------------------------------------
+Man Pages and Help
+
+man <command> --> man stands Manual. It displays the Manual Page of the command, which includes all the details of the command
+<command> --help --> To get a brief summary of the command
+--------------------------------------------------------------------------------------------------------------
+Copy, Move and Remove
+
+Copy Files and Directories:
+
+cp <original-file-path> <new-file-path> --> To copy a file in linux
+cp -r <original-directory-path> <new-directory-path> --> To copy a directory in linux
+
+cp <original-file-path> <directory-path>/ --> To copy a file in linux to a particular directory path with the same file name
+cp <original-file-path> <directory-path>/<new-file-name> --> To copy a file in linux to a particular directory path with the new file name
+--------------------------------------------------------------------------------------------------------------
+Move Files and Directories:
+
+mv <original-file-path> <new-file-path> --> To rename a file in linux
+mv <original-directory-path> <new-directory-path> --> To rename a directory in linux
+
+mv <original-file-path> <directory-path>/ --> To move a file in linux to a particular directory path with the same file name
+mv <original-file-path> <directory-path>/<new-file-name> --> To move a file in linux to a particular directory path with the new file name
+--------------------------------------------------------------------------------------------------------------
+Remove Files and Directories
+
+rm <file-name> --> To delete a file in linux
+rm -r <directory-name> --> To delete a directory in linux
+
+rm file* --> To delete all the files that start with the name file
+rm *.sh --> To delete all the files that end with .sh
+rm *unit* --> To delete all the files that have unit in the middle
