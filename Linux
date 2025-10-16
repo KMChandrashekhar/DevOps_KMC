@@ -341,3 +341,174 @@ r - 2^2 - 4
 w - 2^1 - 2
 x - 2^0 - 1
 - - 0
+--------------------------------------------------------------------------------------------------------------
+Change Permissions:
+
+chmod 774 <file-name> --> To give the owner rwx group rwx and others r
+chmod 644 <file-name> --> To give the owner rw, group r and others r
+chmod 440 <file-name> --> To give the owner r, group r and others no permission
+
+chmod u+x <file-name> --> To add executable permission to the owner
+chmod g-r <file-name> --> To remove read permission for the group
+chmod u+x,g+wx,o+rw <file-name> --> To add execute permisson for owner, Add Write and Execute for group, Add read and write for others
+
+u - Owner
+g - Group
+o - Others
+--------------------------------------------------------------------------------------------------------------
+Chnaging Ownership and Group of files and directories
+
+chown <username> <file> --> To change the owner of the file
+chgrp <groupname> <file> --> To change the group attached to the file
+
+chown <username>:<groupname> <file> --> To change both owner and group
+--------------------------------------------------------------------------------------------------------------
+Default Permissions:
+
+Files - 666
+Directories - 777
+
+umask 022 --> To change the default permissions of files to 644 and directories 755
+umask 002 --> To change the default permissions of files to 664 and directories 775
+umask 066 --> To change the default permissions of files to 600 and directories 711
+--------------------------------------------------------------------------------------------------------------
+who --> To check all the users logged in to the server
+whoami --> TO check the current user
+id --> To check the current user's ID, Group ID, and the groups user belongs to
+--------------------------------------------------------------------------------------------------------------
+File and Disk Size
+
+df -h --> To check the disk size and usage
+
+du -h <file/dire> --> To check the disk usage of file directory
+stat -c %s <file/dire> --> To check the actual usage of a file or directory in bytes
+
+free -h --> To check the system memory [RAM]
+--------------------------------------------------------------------------------------------------------------
+Link - To create a shortcut for a file or directory in Linux
+
+ln <original-file-path> <hardlink-path> --> To create a hard link
+ln -s <original-file-path> <softlink-path> --> To create a soft/symobolic link
+
+Example[hardlink]:
+
+ln /home/ec2-user/dir1/dir2/dir3/original hardlink
+
+A soft link will point to the path of the original file and as soon as the original file is moved or deleted, The softlink will stop working
+
+Whereas a hardlink directly points to the memory location [inode] of the original file. Therefore even after the removal of original file the hardlink will still work
+
+inode - It is an unique identification number of the file pointing to its memory location
+
+ls -i --> To check the inodes of files and directories
+--------------------------------------------------------------------------------------------------------------
+PS - Process
+
+ps -ef --> To list all the process from all users running on the server
+ps -u <username> --> To check the process create by a particular user
+
+Example:
+
+ps -u <ec2-user> --> To check process created by ec2-user
+
+kill <PID> --> To terminate a process
+kill -9 <PID> --> To kill a process forcefully
+--------------------------------------------------------------------------------------------------------------
+sudo service <service-name> stop --> To stop a service
+sudo service <service-name> start --> To start a service
+sudo service <service-name> status --> To check the status of the service
+
+sudo systemctl stop <service-name> --> To stop a service
+sudo systemctl start <service-name> --> To start a service
+sudo systemctl status <service-name> --> To check the status of the service
+--------------------------------------------------------------------------------------------------------------
+top --> To check all the process, CPU and Memory Usage in a live interactive dashboard
+
+k --> To kill a process by its ID
+u --> To specify a user
+q --> To quit
+--------------------------------------------------------------------------------------------------------------
+tee - Redirect and Append
+
+<command> | tee <file-name> --> To redirect the output of a command to a file and also print the output of the command on the terminal
+<command> | tee <file-name1> <file-name2> --> To redirect the output to multiple files
+
+<command> | tee -a <file-name> --> To append the output and also print the output on the terminal
+
+Example:
+
+echo "hello" | tee test.txt
+--------------------------------------------------------------------------------------------------------------
+SSH - Secure Shell or Secure Socket Shell
+
+SSH is a network protocol that enables an user to access a remote server in a secure way
+
+Default Port: 22
+
+Jenkins: 8080
+Tomcat: 8080
+HTTP: 80
+HTTPS: 443
+Kubernetes API Server: 6443
+Nginx: 80
+
+Port: A port is a virtual point where network connections start and end
+
+SSH Command:
+
+ssh -i <private-key-path> username@<ip-address> --> To connect to a remote server using SSH
+
+Example:
+
+ssh -i key.pem ubuntu@172.31.14.135
+
+SSH Passwordless Connection
+
+To establish a passwordless connection, Generate a key pair using ssh-keygen command. Copy the contents of the newly generated public key to the authorized keys file under .ssh folder on the server to which passwordless connection has to be established.
+
+Note: When using passwordless connection ssh command will look for private with the id_rsa under .ssh folder
+
+ssh <username>@<ip-address> --> SSH with passwordless connection
+
+Example:
+
+ssh ubuntu@172.31.14.135
+--------------------------------------------------------------------------------------------------------------
+SCP - To copy file/directories over SSH
+
+scp -i <private-key-path> <file/dir> <username>@<ip-address>:<remote-server-path> --> To copy files or directories over ssh
+
+Example:
+
+scp -i key_rsa key_rsa.pub ec2-user@172.31.35.79:/home/ec2-user/
+
+If Passwordless connection is established:
+
+scp <file/dir> <username>@<ip-address>:<remote-server-path>
+
+Example:
+
+scp -r dir1 ec2-user@172.31.35.79:/home/ec2-user/
+--------------------------------------------------------------------------------------------------------------
+Miscellaneous Commands:
+
+ping <hostname/ip-address/website> --> To check and pinf another server
+
+uname -a --> To check the details of the server like timezone, architecture etc
+
+cat /etc/os-release --> This file contains the information the server linux distribution
+--------------------------------------------------------------------------------------------------------------
+Install Packages:
+
+sudo yum install <package-name> --> To install a package in Redhat
+
+Example:
+
+yum install git
+--------------------------------------------------------------------------------------------------------------
+Netstat - To check the information about ports in linux
+
+sudo yum install net-tools --> To install netstat
+
+sudo netsta -tulnp --> TO check which process is using which port on the server
+--------------------------------------------------------------------------------------------------------------
