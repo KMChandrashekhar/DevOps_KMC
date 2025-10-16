@@ -251,3 +251,93 @@ sed '4d;8d' <file-name> --> To delete the 4th and 8th line
 sed -n '4p' <file-name> --> To print the 4th of the file
 sed -n '4,6p' <file-name> --> To print from 4th line to 6th line of the file
 sed -n '4,$p' <file-name> --> To print from 4th line to end of the file
+sed -n '4p;8p' <file-name> --> To print the 4th and 8th line of the file
+--------------------------------------------------------------------------------------------------------------
+Cut - Used to cut the file column wise
+
+cut -d " " -f2 <file-name> --> To print the 2nd column of the file
+cut -d " " -f2-6 <file-name> --> To print from 2nd to 6th columns of the file
+cut -d " " -f2,6 <file-name> --> To print the 2nd and 6th column of the file
+
+d - Delimiter [Used to specify the seperator between the columns]
+f - Fields
+--------------------------------------------------------------------------------------------------------------
+AWK - Cut the file column and row wise
+
+awk '{print}' <file-name> --> To print the contents of the file
+
+awk -F " " '{print$4}' <file-name> --> To print the 4th column of the file
+awk -F " " '{print$4,6}' <file-name> --> To print the 4th and 6th column of the file
+awk -F " " '{print$NF}' <file-name> --> To print the last column of the file
+awk -F " " '{print$(NF-1)}' <file-name> --> To print the last but one column of the file
+
+awk -F " " '{print NF}' <file-name> --> To print the total number of fields/columns in each line of the file
+
+awk 'NR==4{print}' <file-name> --> To print line 4 of the file
+awk 'NR==4, NR==6 {print}' <file-name> --> To print from line 4 to line 6
+awk 'NR==4; NR==6 {print}' <file-name> --> To print from line 4 and line 6
+
+awk 'END {print NR}' <file-name> --> To print the total number of rows in the file
+
+F - Field seperator
+NF - Number of Fields [Columns]
+NR - Number of Rows [Lines]
+--------------------------------------------------------------------------------------------------------------
+SUDO - Super User Does
+
+Sudo Command gives permissions for users to execute commands as root user
+
+sudo <command> --> To execute a command as root user
+
+Example:
+
+sudo yum install git --> To install the git on the linux server on redhat flavor [Required Super User Privileges]
+
+To give an user the sudo permission, The user needs to be added to the sudoers file
+
+sudo visudo /etc/sudoers --> TO edit the sudoers file
+
+To Give an User Sudo Permission in Sudoers File:
+<username>        ALL=(ALL)       NOPASSWD: ALL
+
+To Give a Group Sudo Permission in Sudoers File:
+%<groupname>        ALL=(ALL)       NOPASSWD: ALL
+--------------------------------------------------------------------------------------------------------------
+Adding Users:
+
+sudo useradd <username> --> To create an user in Linux
+sudo passwd <username> --> To set Password for the user
+
+sudo userdel <username> --> To delete an user
+sudo userdel -r <username> --> To delete the user along with his home directory
+
+getent passwd (or) cat /etc/passwd --> To check all the users in the server
+
+Switch Users
+
+su <username> --> To switch to a particular user
+sudo su <username> --> To switch to an user without password
+
+sudo su --> To switch to root user
+--------------------------------------------------------------------------------------------------------------
+Adding Groups:
+
+sudo groupadd <groupname> --> To create a group in Linux
+sudo groupdel <groupname> --> To delete a group in Linux
+
+sudo gpasswd -a <username> <groupname> --> To add an user to a group
+sudo gpasswd -d <username> <groupname> --> To remove an user from a group
+--------------------------------------------------------------------------------------------------------------
+Permissions In Linux:
+
+r   - Read Permission
+w   - Write Permission
+x   - Execute Permission
+
+rw-     r--     r--
+[owner] [group] [others]
+
+r - 2^2 - 4
+w - 2^1 - 2
+x - 2^0 - 1
+- - 0
