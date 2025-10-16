@@ -151,3 +151,103 @@ rm -r <directory-name> --> To delete a directory in linux
 rm file* --> To delete all the files that start with the name file
 rm *.sh --> To delete all the files that end with .sh
 rm *unit* --> To delete all the files that have unit in the middle
+--------------------------------------------------------------------------------------------------------------
+Echo -- Print
+
+echo "<strings>" --> To print text on the terminal
+
+Example:
+
+echo "hello" --> To print hello on the terminal
+
+echo -e "hello \nHow are you" --> To print the text in new lines using \n escaped backslash character
+--------------------------------------------------------------------------------------------------------------
+Redirect [>] and Append [>>]
+
+command > <file-name> --> To redirect the standard output of a command to a file
+
+Example:
+
+echo "hello" > red1.txt --> To store the output of the echo command to the file red1.txt
+
+command >> <file-name> --> To append the output of a command to a file
+
+echo "How are you" >> red1.txt --> To store the additional output of the echo command to the same file red1.txt
+--------------------------------------------------------------------------------------------------------------
+Pipe [|] - To pass the stanard output of a command to the next command
+
+<command1> | <command2> --> To pass the output of command 1 to command 2
+
+Example:
+
+head -3 <file-name> | tail -1 --> To print the 3rd line of the file
+head -3 <file-name> | wc -w --> To find the number of words in the first 3 lines of the file
+--------------------------------------------------------------------------------------------------------------
+Word Count [wc]
+
+wc <file-name> --> To check the total number of lines, words and characters present in the file
+
+wc -l <file-name> --> To print the total number of lines present in the file
+wc -w <file-name> --> To print the total number of words present in the file
+wc -c <file-name> --> To print the total number of characters present in the file
+--------------------------------------------------------------------------------------------------------------
+grep -- Used to search for strings/patterns inside the file
+
+grep "<string>" <file-name> --> To print all the lines with the matching string
+
+grep -i "<string>" <file-name> --> To print all the lines with the matching string and case is ignored
+
+grep -n "<string>" <file-name> --> To print all the lines with the matching string along with reference line numbers
+
+grep -e "<string1>" -e "<string2>" <file-name> --> To search for multiple strings inside the file
+
+grep -lR "<string>" --> To print all the file names that have the matching string
+
+grep -c "<string>" <file-name> --> To print count of number of lines with the matching string
+
+grep -v "<string>" <file-name> --> To print all the lines that do not have the matching string
+
+grep "^<string>" <file-name> --> To print all the lines with the matching string at the beginning of the line
+grep "<string>$" <file-name> --> To print all the lines with the matching string at the end of the line
+--------------------------------------------------------------------------------------------------------------
+Find -- To search for files and directories
+
+find -name <file/dir-name> --> To search for files and directories by their name
+
+find -iname <file/dir-name> --> To search for files and directories by their name with case ignored
+
+find -type f -name <file-name> --> To only search for files
+find -type d -name <dir-name> --> To only search for directories
+
+find <path> -name <file/dir-name> --> To search for files and directories inside a particular path
+
+find -mtime -7 --> Find all the files created in the last 7 days
+find -mtime +7 --> Find all the files created more than 7 days ago
+
+find -maxdepth 1 <file/dir-name> --> To search for files and directories in the current directory only
+--------------------------------------------------------------------------------------------------------------
+Assignment:
+
+1. Grep Flag to display all the file names that do not have the string
+2. Find all the files that got created in last 1 hour and 30 mins
+3. Find all the files that have the size more than 1 MB
+4. Find all the files which are empty and delete using find command
+--------------------------------------------------------------------------------------------------------------
+sed - Stream Editor - Find/Replace, Print, Deleting etc
+
+sed 's/<old-pattern>/<new-pattern>/ig' <file-name> --> To find and replace strings on all lines and also ignoring case [File does not get modified]
+
+sed -i 's/<old-pattern>/<new-pattern>/ig' <file-name> --> To insert the changes to the file with sed command
+
+sed '4s/<old-pattern>/<new-pattern>/g' <file-name> --> To find and replace only on 4th line
+sed '4,6s/<old-pattern>/<new-pattern>/g' <file-name> --> To find and replace only from 4th to 6th line
+sed '4,$s/<old-pattern>/<new-pattern>/g' <file-name> --> To find and replace only from 4th line to end of the file
+
+sed '4d' <file-name> --> To delete the 4th of the file
+sed '4,6d' <file-name> --> To delete from 4th line to 6th line of the file
+sed '4,$d' <file-name> --> To delete from 4th line to end of the file
+sed '4d;8d' <file-name> --> To delete the 4th and 8th line
+
+sed -n '4p' <file-name> --> To print the 4th of the file
+sed -n '4,6p' <file-name> --> To print from 4th line to 6th line of the file
+sed -n '4,$p' <file-name> --> To print from 4th line to end of the file
