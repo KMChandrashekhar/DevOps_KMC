@@ -1,4 +1,4 @@
-DOCKER
+DOCKER containerization
 “To standardized way to package the application with its dependencies and deploy 
 it on any environment.”
 • Docker is a tool used to create, deploy,and run applications using containers.
