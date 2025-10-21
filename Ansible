@@ -1,4 +1,4 @@
-Ansible Basic Questions with Answers
+Ansible Basic Questions with Answers latest
 
 1. What is Ansible and why is it used in DevOps?
 👉 Ansible is an open-source IT automation tool used for configuration management, application deployment, and orchestration. It is agentless (uses SSH/WinRM), simple to use, and helps maintain consistency across servers.
