@@ -1,0 +1,45 @@
+You don’t get 20–30 LPA DevOps offers by knowing commands — you earn it by knowing systems.
+
+If you’re preparing for a 𝐃𝐞𝐯𝐎𝐩𝐬 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 role at top companies like 𝐏𝐡𝐨𝐧𝐞𝐏𝐞, 𝐑𝐚𝐳𝐨𝐫𝐩𝐚𝐲, 𝐨𝐫 𝐒𝐰𝐢𝐠𝐠𝐲, here’s what they actually test — and it’s way beyond just Docker or Jenkins.
+
+They look for 𝐞𝐧𝐠𝐢𝐧𝐞𝐞𝐫𝐬 𝐰𝐡𝐨 𝐮𝐧𝐝𝐞𝐫𝐬𝐭𝐚𝐧𝐝 𝐡𝐨𝐰 𝐞𝐯𝐞𝐫𝐲𝐭𝐡𝐢𝐧𝐠 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐬 — from infrastructure to automation to reliability at scale.
+
+𝐂𝐥𝐨𝐮𝐝 & 𝐈𝐧𝐟𝐫𝐚𝐬𝐭𝐫𝐮𝐜𝐭𝐮𝐫𝐞
+• VPC design, subnetting, NAT gateways, and secure networking
+• Load balancing, autoscaling, IAM best practices, and multi-region DR setups
+• Cost optimization and tagging for visibility at scale
+
+𝐂𝐈/𝐂𝐃 & 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧
+• Pipeline design with rollbacks, approvals, and observability
+• Blue-Green and Canary deployment strategies
+• Secret management (Vault, SSM, Sealed Secrets)
+• Integrating scans, tests, and compliance in CI/CD
+
+𝐂𝐨𝐧𝐭𝐚𝐢𝐧𝐞𝐫𝐬 & 𝐎𝐫𝐜𝐡𝐞𝐬𝐭𝐫𝐚𝐭𝐢𝐨𝐧
+• Image optimization, caching, and vulnerability scanning
+• Pod scheduling, taints/tolerations, and affinity rules
+• Helm vs Kustomize, config and secret management
+
+𝐈𝐚𝐂 & 𝐂𝐨𝐧𝐟𝐢𝐠𝐮𝐫𝐚𝐭𝐢𝐨𝐧
+• Modular Terraform architecture and remote state management
+• Multi-environment workflows and drift detection
+• Policy as Code (OPA/Sentinel) and CI validation
+
+𝐌𝐨𝐧𝐢𝐭𝐨𝐫𝐢𝐧𝐠 & 𝐎𝐛𝐬𝐞𝐫𝐯𝐚𝐛𝐢𝐥𝐢𝐭𝐲
+• Metrics, logs, and tracing for distributed systems
+• SLO-based alerting, dashboards, and troubleshooting
+• Handling 100M+ metrics/day efficiently
+
+𝐒𝐲𝐬𝐭𝐞𝐦 𝐃𝐞𝐬𝐢𝐠𝐧 𝐟𝐨𝐫 𝐃𝐞𝐯𝐎𝐩𝐬
+• Building a scalable CI/CD platform for 100+ microservices
+• Centralized logging and monitoring solutions
+• Secrets and certificate management at scale
+• Designing HA architecture for internal developer platforms
+
+Tools will get you started. System thinking will get you hired.
+
+Want to prepare the smart way?
+Check out my 𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐏𝐫𝐞𝐩𝐚𝐫𝐚𝐭𝐢𝐨𝐧 𝐊𝐢𝐭 (1000+ real-world Q&A + scenario-based questions) — designed to help you crack interviews from associate to senior roles.
+
+ Get it here: https://lnkd.in/dtkAGrH6
+ Use coupon code: 𝐃𝐞𝐯𝐎𝐩𝐬𝟓𝟎 for an exclusive 50% discount.
