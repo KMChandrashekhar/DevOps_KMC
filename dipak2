@@ -1,0 +1,44 @@
+He missed a 28 LPA offer from PhonePe — not for lack of skill, but for lack of alignment.
+
+One of my friends recently interviewed for a 𝐃𝐞𝐯𝐎𝐩𝐬 𝐄𝐧𝐠𝐢𝐧𝐞𝐞𝐫 role at PhonePe.
+He had the right experience — AWS, Terraform, Kubernetes, CI/CD — everything lined up.
+But still, something didn’t click in the final round.
+
+Here’s how his journey went:
+
+𝐑𝐨𝐮𝐧𝐝 𝟏 – 𝐃𝐞𝐯𝐎𝐩𝐬 𝐅𝐮𝐧𝐝𝐚𝐦𝐞𝐧𝐭𝐚𝐥𝐬 𝐚𝐧𝐝 𝐒𝐜𝐫𝐢𝐩𝐭𝐢𝐧𝐠
+The interview began with practical scenarios.
+He was asked how Terraform manages state in multi-environment setups.
+Then a Bash challenge — monitor a log file and alert on error spikes.
+They explored AWS networking — VPC design, NAT Gateway use cases, and EKS node scaling.
+He did great — crisp, confident, and clear.
+
+𝐑𝐨𝐮𝐧𝐝 𝟐 – 𝐒𝐲𝐬𝐭𝐞𝐦 𝐃𝐞𝐬𝐢𝐠𝐧 𝐟𝐨𝐫 𝐑𝐞𝐥𝐢𝐚𝐛𝐢𝐥𝐢𝐭𝐲 𝐚𝐧𝐝 𝐒𝐜𝐚𝐥𝐞
+The question that changed everything:
+“Design a CI/CD pipeline for a payments platform with zero downtime deployments.”
+He proposed GitHub Actions → ECR → EKS with blue-green deployment strategy.
+Then came deeper questions —
+How do you roll back failed deployments?
+How do you ensure observability across microservices?
+What’s your plan for schema versioning during releases?
+He answered most well, but missed the mindset part — designing for failure and chaos readiness.
+
+𝐑𝐨𝐮𝐧𝐝 𝟑 – 𝐓𝐞𝐜𝐡𝐧𝐨-𝐌𝐚𝐧𝐚𝐠𝐞𝐫𝐢𝐚𝐥 + 𝐁𝐞𝐡𝐚𝐯𝐢𝐨𝐫𝐚𝐥
+This round wasn’t about tools — it was about ownership.
+They discussed a production outage he once handled.
+He explained how he fixed it, but the manager asked,
+“What did you change in your process after that?”
+That’s where things slipped.
+The conversation shifted from problem-solving to long-term thinking — how you prevent, not just react.
+
+In the end, the feedback came clear:
+“Technically strong, but didn’t align with how we think about reliability and ownership.”
+
+He didn’t lose because he lacked knowledge.
+He lost because he hadn’t learned to 𝐭𝐡𝐢𝐧𝐤 𝐥𝐢𝐤𝐞 𝐚𝐧 𝐒𝐑𝐄 — 𝐭𝐨 𝐛𝐮𝐢𝐥𝐝 𝐬𝐲𝐬𝐭𝐞𝐦𝐬 𝐭𝐡𝐚𝐭 𝐫𝐞𝐜𝐨𝐯𝐞𝐫, 𝐧𝐨𝐭 𝐣𝐮𝐬𝐭 𝐝𝐞𝐩𝐥𝐨𝐲.
+
+If you’re preparing for 𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰, check out my
+𝐃𝐞𝐯𝐎𝐩𝐬 𝐈𝐧𝐭𝐞𝐫𝐯𝐢𝐞𝐰 𝐏𝐫𝐞𝐩𝐚𝐫𝐚𝐭𝐢𝐨𝐧 𝐊𝐢𝐭 — it includes 𝟏𝟎𝟎𝟎+ 𝐫𝐞𝐚𝐥-𝐰𝐨𝐫𝐥𝐝 𝐐&𝐀, 𝐬𝐜𝐞𝐧𝐚𝐫𝐢𝐨-𝐛𝐚𝐬𝐞𝐝 𝐬𝐲𝐬𝐭𝐞𝐦 𝐝𝐞𝐬𝐢𝐠𝐧 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬, 𝐚𝐧𝐝 𝐂𝐈/𝐂𝐃 𝐜𝐚𝐬𝐞 𝐬𝐭𝐮𝐝𝐢𝐞𝐬 to help you align with what top companies actually look for.
+
+ Get it here: https://lnkd.in/dtkAGrH6
+ Use coupon code: 𝐃𝐞𝐯𝐎𝐩𝐬𝟓𝟎 for an exclusive 50% discount.
